@@ -14,7 +14,7 @@ export default function NavBar() {
   }
   return (
     <>
-      <nav className="flex-row w-dvw h-7 bg-slate-50 px-2">
+      <nav className="flex-row w-dvw h-10 bg-slate-50 px-2">
         {/* <MenuButton handleOpenMenu={handleOpenMenu} />
         <div className={classHidden}>
           <ul>
