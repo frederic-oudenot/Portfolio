@@ -1,24 +1,35 @@
 "use client";
-import CardSkills from "../../components/card-skill/CardSkills";
-import skills from "../../constants/skills";
-import About from "../../sections/about/About";
-import Contact from "../../sections/contact/Contact";
-import Descritpion from "../../sections/description/Description";
-import Portfolio from "../../sections/portofolio/Portfolio";
 
-interface CardSkillsProps {
-  id: string;
-  name: string;
-  src: string;
-}
+import Footer from "../containers/footer/Footer";
+import NavBar from "../containers/header/NavBar";
+import Session from "../containers/session/Session";
+import { useState } from "react";
+import Window from "../sections/window/Window";
 
 export default function Home() {
+  const [display, SetDisplay] = useState<Boolean>(false);
+
+  function handleClick() {
+    const blurElement = document.getElementById("blur");
+    const sessionElement = document.getElementById("session");
+    blurElement!.classList.remove("blur-md");
+    sessionElement!.style.display = "none";
+    SetDisplay(true);
+  }
   return (
-    <main className="flex flex-col">
-      <Descritpion />
-      <About />
-      {/*<Portfolio />*/}
-      <Contact /> 
-    </main>
+    <>
+      <Session handleClick={handleClick} />
+      <div id="blur" className="blur-md">
+        <main className="bg-fixed bg-cover h-screen bg-[url('/wallpaper.jpg')]">
+          {display ? (
+            <>
+              <NavBar />
+              <Window />
+              <Footer />
+            </>
+          ) : null}
+        </main>
+      </div>
+    </>
   );
 }
