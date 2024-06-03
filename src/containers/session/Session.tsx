@@ -5,7 +5,7 @@ interface SessionProp {
 export default function Session({ handleClick }: SessionProp) {
   return (
     <section
-      className="absolute flex-col w-full h-screen flex-col gap-16 justify-center content-center z-10"
+      className="absolute w-full h-screen place-content-center z-10"
       id="session"
     >
       <div className="h-56 w-56 bg-lime-50 rounded-full m-auto text-center">

@@ -4,7 +4,8 @@ import { useState } from "react";
 import MenuButton from "../../components/buttons/MenuButtons";
 
 export default function NavBar() {
-  const [classHidden, setClassHidden] = useState<string>("hidden");
+  const [classHidden, setClassHidden] = useState<string>("");
+  console.log("🚀 ~ NavBar ~ classHidden:", classHidden);
 
   function handleOpenMenu() {
     console.log(classHidden);
@@ -12,30 +13,42 @@ export default function NavBar() {
       ? setClassHidden("hidden")
       : setClassHidden("block");
   }
+
+  const listMenu = [
+    {
+      id: "home",
+      link: "#home",
+      name: "Home",
+    },
+    {
+      id: "about",
+      link: "#about",
+      name: "About",
+    },
+    {
+      id: "portfolio",
+      link: "#portfolio",
+      name: "Portfolio",
+    },
+    {
+      id: "contact",
+      link: "#contact",
+      name: "Contact",
+    },
+  ];
+
   return (
     <>
-      <nav className="flex-row w-dvw h-10 bg-slate-50 px-2">
-        {/* <MenuButton handleOpenMenu={handleOpenMenu} />
-        <div className={classHidden}>
-          <ul>
-            <Link href={"#home"}>Home</Link>
-          </ul>
-          <ul>
-            <Link href={"#about"}>About</Link>
-          </ul>
-          <ul>
-            <Link href={"#portfolio"}>Portfolio</Link>
-          </ul>
-          <ul>
-            <Link href={"#contact"}>Contact</Link>
-          </ul>
-        </div> */}
+      <nav
+        className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2 ${classHidden}`}
+      >
         <div className="flex items-center text-black gap-4">
           <i className="devicon-apple-original" />
-          <Link href={"#home"}>Home</Link>
-          <Link href={"#about"}>About</Link>
-          <Link href={"#portfolio"}>Portfolio</Link>
-          <Link href={"#contact"}>Contact</Link>
+          {listMenu.map((menu) => (
+            <Link id={menu.id} href={menu.link}>
+              {menu.name}
+            </Link>
+          ))}
         </div>
       </nav>
     </>
