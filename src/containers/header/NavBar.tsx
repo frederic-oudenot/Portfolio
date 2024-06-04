@@ -1,19 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
-import MenuButton from "../../components/buttons/MenuButtons";
 
-export default function NavBar() {
-  const [classHidden, setClassHidden] = useState<string>("");
-  console.log("🚀 ~ NavBar ~ classHidden:", classHidden);
+interface NavBarProp {
+  handleOpenWindow: (id:string,isOpen:boolean)=>void;
+}
 
-  function handleOpenMenu() {
-    console.log(classHidden);
-    classHidden !== "hidden"
-      ? setClassHidden("hidden")
-      : setClassHidden("block");
-  }
-
+export default function NavBar({ handleOpenWindow }: NavBarProp) {
   const listMenu = [
     {
       id: "home",
@@ -39,13 +31,16 @@ export default function NavBar() {
 
   return (
     <>
-      <nav
-        className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2 ${classHidden}`}
-      >
+      <nav className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2 $`}>
         <div className="flex items-center text-black gap-4">
           <i className="devicon-apple-original" />
           {listMenu.map((menu) => (
-            <Link id={menu.id} href={menu.link}>
+            <Link
+              id={menu.id}
+              href={menu.link}
+              aria-label={menu.name}
+              onClick={() => handleOpenWindow(menu.id, true)}
+            >
               {menu.name}
             </Link>
           ))}

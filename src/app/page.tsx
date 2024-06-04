@@ -8,6 +8,7 @@ import Window from "../sections/window/Window";
 
 export default function Home() {
   const [display, SetDisplay] = useState<Boolean>(false);
+  const [openWindow, SetOpenWindow] = useState<any>();
 
   function handleClick() {
     const blurElement = document.getElementById("blur");
@@ -16,15 +17,19 @@ export default function Home() {
     sessionElement!.style.display = "none";
     SetDisplay(true);
   }
+
+  function handleOpenWindow(id: string, isOpen: boolean) {
+    SetOpenWindow({ id: id, isOpen: isOpen });
+  }
   return (
     <>
       <Session handleClick={handleClick} />
       <div id="blur" className="blur-md">
-        <main className="bg-fixed bg-cover h-screen bg-[url('/wallpaper.jpg')]">
+        <main className="relative bg-fixed bg-cover h-screen bg-[url('/wallpaper.jpg')]">
           {display ? (
             <>
-              <NavBar />
-              <Window />
+              <NavBar handleOpenWindow={handleOpenWindow} />
+              <Window id={openWindow?.id} isOpen={openWindow?.isOpen} />
               <Footer />
             </>
           ) : null}
