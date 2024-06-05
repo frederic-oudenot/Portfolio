@@ -13,16 +13,20 @@ export default function AboutSection() {
   return (
     <>
       <section id="about" className="w-full">
-        <article className="flex flex-col justify-center content-center p-5 text-black">
+        <article className={articleStyle}>
           <Title content={title} />
           <Description content={description} />
         </article>
-        <ComputerContainer />
-        <article className="flex flex-col justify-center content-center p-5 text-black">
+
+        <article className={articleStyle}>
           <Title content={title2} />
           <Description content={description2} />
+          <ComputerContainer />
         </article>
       </section>
     </>
   );
 }
+
+const articleStyle =
+  "flex flex-col justify-center content-center p-5 text-black";

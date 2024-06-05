@@ -3,6 +3,6 @@ interface DescriptionProp {
   }
   
   export default function Description({ content }: DescriptionProp) {
-    return <h1 className="text-justify text-md">{content}</h1>;
+    return <p className="text-justify text-md">{content}</p>;
   }
   

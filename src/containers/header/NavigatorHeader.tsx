@@ -1,5 +1,5 @@
 import ActionButton from "@/components/buttons/ActionButton";
-import { allActionColor } from "@/constants/allActionColor";
+import allActionColor from "@/constants/allActionColor";
 import { IAllActionColor } from "@/interface/Window";
 
 interface NavigatorHeaderProp {

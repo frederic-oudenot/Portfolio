@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CardSkills from "@/components/card-skill/CardSkills";
 import skills from "@/constants/skills";
+import allCollectionMusic from '@/constants/allCollectionMusic'
 
 export default function ComputerContainer() {
   const [closeWindow, setCloseWindow] = useState<string>();

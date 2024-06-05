@@ -24,3 +24,5 @@ const allCollectionMusic = [
     source: "https://www.youtube.com/embed/hpjV962DLWs?autoplay=1",
   },
 ];
+
+export default allCollectionMusic;
