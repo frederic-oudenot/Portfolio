@@ -1,38 +1,11 @@
 import { useEffect, useState } from "react";
-import CardSkills from "../../components/card-skill/CardSkills";
-import skills from "../../constants/skills";
+import CardSkills from "@/components/card-skill/CardSkills";
+import skills from "@/constants/skills";
 
 export default function ComputerContainer() {
   const [closeWindow, setCloseWindow] = useState<string>();
   const [openMusic, setOpenMusic] = useState<string>();
   const [sourceMusic, setSourceMusic] = useState<string>();
-
-  const collectionMusic = [
-    {
-      id: "Never gonna give you up",
-      source: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
-    },
-    {
-      id: "Pedro pedro",
-      source: "https://www.youtube.com/embed/AIGnRc7F86Q?autoplay=1",
-    },
-    {
-      id: "Can't touch this",
-      source: "https://www.youtube.com/embed/Be886Ezi30g?autoplay=1",
-    },
-    {
-      id: "Tchoupi",
-      source: "https://www.youtube.com/embed/nFyRw4yMc_4?autoplay=1",
-    },
-    {
-      id: "What do the fox say ?",
-      source: "https://www.youtube.com/embed/jofNR_WkoCE?autoplay=1",
-    },
-    {
-      id: "Aulos",
-      source: "https://www.youtube.com/embed/hpjV962DLWs?autoplay=1",
-    },
-  ];
 
   useEffect(() => {
     setCloseWindow("flex flex-wrap justify-center gap-2");
@@ -43,14 +16,12 @@ export default function ComputerContainer() {
     const minValue = Math.ceil(min);
     const maxValue = Math.floor(max);
     const random = Math.floor(Math.random() * (maxValue - minValue) + minValue);
-    console.log("🚀 ~ randomMusic ~ random:", random);
-    return collectionMusic[random];
+    return allCollectionMusic[random];
   }
 
   function handleClick() {
     if (closeWindow !== "hidden") {
-      const music = randomMusic(0, collectionMusic.length - 1);
-      console.log("🚀 ~ handleClick ~ music:", music);
+      const music = randomMusic(0, allCollectionMusic.length - 1);
       setCloseWindow("hidden");
       setOpenMusic("w-full h-full");
       setSourceMusic(music.source);
@@ -63,7 +34,7 @@ export default function ComputerContainer() {
 
   return (
     <section>
-      <div className="rounded-t-lg border-2 border-gray-200 bg-white w-96 h-80 overflow-scroll">
+      <div className="rounded-t-lg border-2 border-gray-200 bg-white w-2/3 h-80 overflow-y-scroll">
         <div className="bg-gray-200 w-full h-5 ">
           <div className="flex">
             <button onClick={handleClick}>
@@ -93,7 +64,7 @@ export default function ComputerContainer() {
           allow="autoplay"
         ></iframe>
       </div>
-      <div className="border-2 border-gray-200 bg-gray-200 rounded-b-lg w-96 h-4"></div>
+      <div className="border-2 border-gray-200 bg-gray-200 rounded-b-lg w-2/3 h-4"></div>
     </section>
   );
 }

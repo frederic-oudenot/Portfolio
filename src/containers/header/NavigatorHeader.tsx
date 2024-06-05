@@ -3,12 +3,12 @@ import { allActionColor } from "@/constants/allActionColor";
 import { IAllActionColor } from "@/interface/Window";
 
 interface NavigatorHeaderProp {
-  handleClick: (id: string) => void;
+  handleClick: (buttonId: string) => void;
 }
 
 export default function NavigatorHeader({ handleClick }: NavigatorHeaderProp) {
   return (
-    <header className="w-full h-10 flex content-center p-3 bg-black gap-x-1 ">
+    <header className="relative w-full h-10 flex content-center p-3 bg-black gap-x-1 ">
       <>
         {allActionColor.map((button: IAllActionColor, index: number) => (
           <ActionButton

@@ -1,46 +1,37 @@
+import listMenu from "@/constants/listMenu";
 import NavigatorHeader from "@/containers/header/NavigatorHeader";
+import functionWindow, {
+  closeWindow,
+  normalWindow,
+} from "@/utils/functionWindow";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface WindowProp {
   id: string;
   isOpen: boolean;
+  handleOpenWindow: (id: string, isOpen: boolean) => void;
 }
 
-export default function Window({ id, isOpen }: WindowProp) {
+export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
   const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
   const [position, setPosition] = useState({ x: 100, y: 100 });
   const dragStartPosition = useRef({ x: 0, y: 0 });
-
+  
   useEffect(() => {
     isOpen && id
       ? setChangeClassname(normalWindow)
       : setChangeClassname(closeWindow);
   }, [isOpen, id]);
 
-  function handleClick(id: string) {
-    switch (id) {
-      case "button-close":
-        setChangeClassname(closeWindow);
-        break;
-      case "button-reduce":
-        if (changeClassname === reduceWindow) {
-          setChangeClassname(normalWindow);
-        } else {
-          setChangeClassname(reduceWindow);
-        }
-        break;
-      case "button-growth":
-        if (changeClassname === fullWindow) {
-          setChangeClassname(normalWindow);
-        } else {
-          setChangeClassname(fullWindow);
-        }
-        break;
-      default:
-        setChangeClassname(normalWindow);
-        break;
+  const selectedFunctionWindow = useCallback((buttonId: string) => {
+    const result = functionWindow(buttonId, id, changeClassname);
+    if (!result) {
+      return;
+    } else {
+      handleOpenWindow(result?.id, result?.isOpen);
+      setChangeClassname(result?.classWindow);
     }
-  }
+  }, []);
 
   const onDragStart = useCallback(
     (e: any) => {
@@ -53,6 +44,7 @@ export default function Window({ id, isOpen }: WindowProp) {
   );
 
   const onDrag = useCallback((e: any) => {
+    if (e.clientX === 0 && e.clientY === 0) return;
     setPosition({
       x: e.clientX - dragStartPosition.current.x,
       y: e.clientY - dragStartPosition.current.y,
@@ -66,10 +58,6 @@ export default function Window({ id, isOpen }: WindowProp) {
       y: e.clientY - dragStartPosition.current.y,
     });
   }, []);
-
-  let reduceWindow = `w-50 h-10 bg-white my-3 m-auto rounded-lg transition: all 1s ease-out;`;
-  let fullWindow = ` w-full h-full bg-white my-3 m-auto rounded-lg transition: all 1s ease-out;`;
-  let normalWindow = ` w-1/2 h-1/2 bg-white my-3 m-auto rounded-lg transition: all 1s ease-out;`;
 
   return (
     <>
@@ -86,14 +74,10 @@ export default function Window({ id, isOpen }: WindowProp) {
           left: `${position.x}px`,
         }}
       >
-        <NavigatorHeader handleClick={handleClick} />
-        <div>
-          <aside>TEST {id}</aside>
-          <div></div>
-        </div>
+        <NavigatorHeader handleClick={selectedFunctionWindow} />
+        <aside>TEST {id}</aside>
+        {listMenu.map((menu) => (menu?.id === id ? menu?.component : null))}
       </section>
     </>
   );
 }
-
-const closeWindow = `hidden`;
