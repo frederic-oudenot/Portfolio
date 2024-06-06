@@ -8,7 +8,7 @@ import listMenu from "@/constants/listMenu";
 import NavBar from "@/containers/navbar/NavBar";
 
 export default function Home() {
-  const [display, SetDisplay] = useState<Boolean>(true);
+  const [display, SetDisplay] = useState<Boolean>(false);
   const [openWindow, SetOpenWindow] = useState<any>(false);
 
   function handleClick() {
@@ -45,7 +45,8 @@ export default function Home() {
                   key={index}
                   handleOpenWindow={handleOpenWindow}
                   id={menu.id}
-                  isOpen={menu.id === "about" && true}
+                  isOpen={menu.id === openWindow?.id && openWindow?.isOpen}
+                  // isOpen={menu.id === 'about' && true}
                 />
               ))}
             </>

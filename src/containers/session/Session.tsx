@@ -11,7 +11,7 @@ export default function Session({ handleClick }: SessionProp) {
       className="absolute w-full h-screen place-content-center z-10"
       id="session"
     >
-      <div className="bg-lime-50 rounded-full m-auto text-center">
+      <div className="flex flex-col w-full place-items-center m-auto text-center gap-2">
         <Avatar />
         <Title
           id={"welcome-session"}
