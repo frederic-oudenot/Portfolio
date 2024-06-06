@@ -31,8 +31,8 @@ export default function Home() {
 
   return (
     <>
-      {/* <Session handleClick={handleClick} /> */}
-      <div id="blur" /*className="blur-md"*/>
+      <Session handleClick={handleClick} />
+      <div id="blur" className="blur-md">
         <main className="relative bg-fixed bg-cover h-screen bg-[url('/wallpaper.jpg')]">
           {display ? (
             <>
@@ -45,7 +45,7 @@ export default function Home() {
                   key={index}
                   handleOpenWindow={handleOpenWindow}
                   id={menu.id}
-                  isOpen={menu.id === 'about' && true}
+                  isOpen={menu.id === "about" && true}
                 />
               ))}
             </>
