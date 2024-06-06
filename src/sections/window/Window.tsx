@@ -1,5 +1,5 @@
 import listMenu from "@/constants/listMenu";
-import NavigatorHeader from "@/containers/header/NavigatorHeader";
+import Sidebar from "@/containers/sidebar/Sidebar";
 import functionWindow, {
   closeWindow,
   normalWindow,
@@ -16,7 +16,7 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
   const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
   const [position, setPosition] = useState({ x: 100, y: 100 });
   const dragStartPosition = useRef({ x: 0, y: 0 });
-  
+
   useEffect(() => {
     isOpen && id
       ? setChangeClassname(normalWindow)
@@ -74,9 +74,10 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
           left: `${position.x}px`,
         }}
       >
-        <NavigatorHeader handleClick={selectedFunctionWindow} />
-        <aside>TEST {id}</aside>
-        {listMenu.map((menu) => (menu?.id === id ? menu?.component : null))}
+        <div className="flex flex-row">
+          <Sidebar />
+          {listMenu.map((menu) => (menu?.id === id ? menu?.component : null))}
+        </div>
       </section>
     </>
   );

@@ -1,11 +1,11 @@
 "use client";
 
 import Footer from "@/containers/footer/Footer";
-import NavBar from "@/containers/header/NavBar";
 import Session from "@/containers/session/Session";
 import { useState } from "react";
 import Window from "@/sections/window/Window";
 import listMenu from "@/constants/listMenu";
+import NavBar from "@/containers/navbar/NavBar";
 
 export default function Home() {
   const [display, SetDisplay] = useState<Boolean>(true);
