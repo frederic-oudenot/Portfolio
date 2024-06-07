@@ -4,7 +4,8 @@ import functionWindow, {
   closeWindow,
   normalWindow,
 } from "@/utils/functionWindow";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import InnerWindow from "./InnerWindow";
 
 interface WindowProp {
   id: string;
@@ -75,8 +76,12 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
         }}
       >
         <div className="flex flex-row">
-          <Sidebar />
-          {listMenu.map((menu) => (menu?.id === id ? menu?.component : null))}
+          <Sidebar id={`sidebar-${id}`} />
+          {listMenu.map((menu, index) => (
+            <Fragment key={index}>
+              {menu?.id === id ? <InnerWindow content={menu} /> : null}
+            </Fragment>
+          ))}
         </div>
       </section>
     </>

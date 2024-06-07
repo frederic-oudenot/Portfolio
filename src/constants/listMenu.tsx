@@ -1,10 +1,11 @@
-import AboutSection from "@/sections/about-section/AboutSection";
+import AboutSection from "@/sections/about/AboutSection";
+import PortfolioSection from "@/sections/portofolio/PortfolioSection";
+import InnerWindow from "@/sections/window/InnerWindow";
 
 const listMenu = [
   {
     id: "home",
     name: "Home",
-    component: "",
   },
   {
     id: "about",
@@ -14,12 +15,12 @@ const listMenu = [
   {
     id: "portfolio",
     name: "Portfolio",
-    component: "",
+    component: <PortfolioSection />,
+
   },
   {
     id: "contact",
     name: "Contact",
-    component: "",
   },
 ];
 

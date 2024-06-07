@@ -18,6 +18,7 @@ export default function SideHeader({ handleClick }: NavigatorHeaderProp) {
             key={index}
           />
         ))}
+        
       </>
     </header>
   );

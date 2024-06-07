@@ -14,21 +14,17 @@ export default function SocialButton({
   label,
   source,
 }: SocialButtonProp) {
-  const router = useRouter();
-
-  function handleClickSocialMedia() {
-    router.push(url);
-  }
   return (
     <>
-      <button
+      <a
+        href={url}
+        target="_blank"
         id={id}
-        onClick={() => handleClickSocialMedia()}
         className="flex flex-row w-full h-16 text-black justify-start items-center px-5 gap-2"
       >
         <Image width={30} height={30} src={source} alt={label} />
         {label}
-      </button>
+      </a>
       <hr />
     </>
   );
