@@ -25,7 +25,11 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
   }, [isOpen, id]);
 
   const selectedFunctionWindow = useCallback((buttonId: string) => {
-    const result = functionWindow(buttonId, id, changeClassname);
+    const foundClassName = document
+      .getElementById(buttonId)!
+      .getAttribute("class");
+
+    const result = functionWindow(buttonId, id, foundClassName);
     if (!result) {
       return;
     } else {
@@ -76,7 +80,10 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
         }}
       >
         <div className="flex flex-row">
-          <Sidebar id={`sidebar-${id}`} />
+          <Sidebar
+            selectedFunctionWindow={selectedFunctionWindow}
+            id={`sidebar-${id}`}
+          />
           {listMenu.map((menu, index) => (
             <Fragment key={index}>
               {menu?.id === id ? <InnerWindow content={menu} /> : null}

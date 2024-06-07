@@ -18,11 +18,11 @@ export default function ActionButton({
   }
 
   return (
-    <img
+    <button
       onClick={() => handleClick(id)}
       onMouseEnter={() => onMouseEnter()}
       id={id}
       className={`flex rounded-full w-3 h-3 ${color} place-content-center`}
-    ></img>
+    ></button>
   );
 }

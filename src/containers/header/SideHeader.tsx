@@ -3,7 +3,7 @@ import allActionColor from "@/constants/allActionColor";
 import { IAllActionColor } from "@/interface/Window";
 
 interface NavigatorHeaderProp {
-  handleClick: (buttonId: string) => void;
+  handleClick: () => void;
 }
 
 export default function SideHeader({ handleClick }: NavigatorHeaderProp) {
@@ -18,7 +18,6 @@ export default function SideHeader({ handleClick }: NavigatorHeaderProp) {
             key={index}
           />
         ))}
-        
       </>
     </header>
   );

@@ -1,6 +1,6 @@
 import AboutSection from "@/sections/about/AboutSection";
+import ContactSection from "@/sections/contact/ContactSection";
 import PortfolioSection from "@/sections/portofolio/PortfolioSection";
-import InnerWindow from "@/sections/window/InnerWindow";
 
 const listMenu = [
   {
@@ -16,11 +16,11 @@ const listMenu = [
     id: "portfolio",
     name: "Portfolio",
     component: <PortfolioSection />,
-
   },
   {
     id: "contact",
     name: "Contact",
+    component: <ContactSection />,
   },
 ];
 

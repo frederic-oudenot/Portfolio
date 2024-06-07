@@ -1,4 +1,5 @@
 "use client";
+import MainButton from "@/components/buttons/MainButton";
 import listMenu from "@/constants/listMenu";
 
 interface NavBarProp {
@@ -12,21 +13,19 @@ export default function NavBar({
 }: NavBarProp) {
   return (
     <>
-      <nav className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2 $`}>
-        <div className="flex items-center text-black gap-4">
+      <nav className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2`}>
+        <div className="flex items-center text-black gap-x-4">
           <i
             onClick={() => closeAllWindows(true)}
             className="devicon-apple-original"
           />
-          {listMenu.map((menu, index) => (
-            <button
-              key={index}
-              id={menu.id}
-              aria-label={menu.name}
-              onClick={() => handleOpenWindow(menu.id, true)}
-            >
-              {menu.name}
-            </button>
+          {listMenu.map((menu: any, index: number) => (
+            <MainButton
+              handleOpenWindow={() => handleOpenWindow(menu?.id, true)}
+              id={`button-${menu.id}`}
+              key={`button-${index}`}
+              label={menu?.name}
+            />
           ))}
         </div>
       </nav>

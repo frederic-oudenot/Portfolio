@@ -1,14 +1,12 @@
-import { useCallback } from "react";
 import SocialButton from "@/components/buttons/SocialButton";
 import allSocialMedia from "@/constants/allSocialMedia";
 import SideHeader from "../header/SideHeader";
 import allProjects from "@/constants/allProjects";
 interface SidebarProp {
   id: string;
+  selectedFunctionWindow: () => void;
 }
-export default function Sidebar({ id }: SidebarProp) {
-  const selectedFunctionWindow = useCallback((buttonId: string) => {}, []);
-
+export default function Sidebar({ id, selectedFunctionWindow }: SidebarProp) {
   return (
     <aside className="sticky top-0 h-full w-48 bg-white-700[.06] max-md:w-16">
       <SideHeader handleClick={selectedFunctionWindow} />
