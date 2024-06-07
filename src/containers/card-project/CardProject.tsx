@@ -12,6 +12,7 @@ interface CardProjectProp {
     description: string;
     technologies: any;
     state: string;
+    image: string;
     src: string;
     url: string;
     view: string;
@@ -27,7 +28,7 @@ export default function CardProject({ project }: CardProjectProp) {
         width={500}
         height={300}
         className={"rounded-lg"}
-        src={project?.src}
+        src={project?.image}
         alt={project?.name}
       />
 

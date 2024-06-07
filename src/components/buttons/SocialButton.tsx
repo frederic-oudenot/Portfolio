@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import SubTitle from "../typography/SubTitle";
 
 interface SocialButtonProp {
   id: string;
@@ -20,10 +21,11 @@ export default function SocialButton({
         href={url}
         target="_blank"
         id={id}
-        className="flex flex-row w-full h-16 text-black justify-start items-center px-5 gap-2"
+        className="flex flex-row w-full h-16 justify-start items-center px-5 gap-2"
       >
         <Image width={30} height={30} src={source} alt={label} />
-        {label}
+        <SubTitle name={label} variant={"black"}/>
+        
       </a>
       <hr />
     </>

@@ -4,10 +4,10 @@ import { useState } from "react";
 
 interface CardSkillsProps {
   skill: any;
-  width: number;
+  widthCard: number;
 }
 
-export default function CardSkills({ skill, width }: CardSkillsProps) {
+export default function CardSkills({ skill, widthCard }: CardSkillsProps) {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [hoveredCard, setHoveredCard] = useState<string>("");
 
@@ -15,7 +15,7 @@ export default function CardSkills({ skill, width }: CardSkillsProps) {
     setIsHovered(hover);
     setHoveredCard(id);
   }
-  const cardStyle = `flex flex-col gap-2 justify-center items-center rounded-lg w-[${width}rem] h-[${width}rem]`;
+  const cardStyle = `flex flex-col gap-2 items-center place-content-center rounded-lg w-[${widthCard}rem] h-[${widthCard}rem]`;
   const showCardStyle = `${cardStyle} bg-[#F2F2F0]  hover:scale-105`;
   const hiddenCardStyle = `${cardStyle} bg-[#F2A9A2]`;
   return (
@@ -31,7 +31,7 @@ export default function CardSkills({ skill, width }: CardSkillsProps) {
       >
         {isHovered && hoveredCard === skill?.id ? (
           <>
-            <IconLanguage src={skill?.src} width={20} />
+            <IconLanguage src={skill?.src} width={12} />
             <SubTitle name={skill?.name} variant="black" />
           </>
         ) : (

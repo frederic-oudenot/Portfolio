@@ -4,5 +4,5 @@ interface SubTitleProp {
 }
 
 export default function SubTitle({ name, variant }: SubTitleProp) {
-  return <h3 className={`text-sm text-${variant}`}>{name}</h3>;
+  return <h3 className={`text-sm text-${variant} max-md:hidden`}>{name}</h3>;
 }

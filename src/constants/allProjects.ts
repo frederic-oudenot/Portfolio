@@ -13,9 +13,10 @@ const allProjects = [
       "Material UI",
     ],
     state: "in-progress",
-    src: "/projects/ocheerz/homepage.png",
+    image: "/projects/ocheerz/homepage.png",
     url: "https://app.latouchemusicale.com/",
     view: "voir projet",
+    src: "https://img.icons8.com/?size=100&id=MYGi2BoeVcwy&format=png&color=000000",
   },
   {
     id: "ocheerz",
@@ -31,9 +32,10 @@ const allProjects = [
       "Typescript)",
     ],
     state: "in-progress",
-    src: "/projects/ocheerz/homepage.png",
+    image: "/projects/ocheerz/homepage.png",
     url: "https://ocheerz-front-5vmm.onrender.com",
     view: "voir projet",
+    src: "https://img.icons8.com/?size=100&id=MYGi2BoeVcwy&format=png&color=000000",
   },
 ];
 
