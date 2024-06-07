@@ -81,7 +81,7 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
       >
         <div className="flex flex-row">
           <Sidebar
-            selectedFunctionWindow={selectedFunctionWindow}
+            selectedFunctionWindow={()=>selectedFunctionWindow}
             id={`sidebar-${id}`}
           />
           {listMenu.map((menu, index) => (
