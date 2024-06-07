@@ -39,7 +39,11 @@ export default function CardProject({ project }: CardProjectProp) {
       </div>
 
       <footer className="flex flex-row mb-3">
-        <MainButton label={project?.view} link={project?.url} />
+        <MainButton
+          label={project?.view}
+          link={project?.url}
+          id={project?.id}
+        />
       </footer>
     </article>
   );

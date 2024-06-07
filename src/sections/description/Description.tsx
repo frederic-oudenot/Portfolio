@@ -13,7 +13,7 @@ export default function Descritpion() {
             <br />
             Je suis un développeur Full-stack Javascript
           </h1>
-          <MainButton label="Contact me" />
+          <MainButton label="Contact me" id={"hello"} />
         </article>
       </section>
     </>

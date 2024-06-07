@@ -16,6 +16,7 @@ export default function Session({ handleClick }: SessionProp) {
         <Title
           id={"welcome-session"}
           content={"Bienvenue sur le portfolio de Frédéric OUDENOT"}
+          variant={"white"}
         />
         <button className="font-bold hover:text-red-700" onClick={handleClick}>
           Connectez-vous !
