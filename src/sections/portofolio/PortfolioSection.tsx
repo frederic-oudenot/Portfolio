@@ -1,12 +1,19 @@
-import allProjects from "@/constants/allProjects";
 import CardProject from "@/containers/card-project/CardProject";
+import { useAppSelector } from "@/hooks/Redux";
 
 export default function PortfolioSection() {
+  const project = useAppSelector((state) => state.projects.projects);
+  const selectedProject = useAppSelector(
+    (state) => state.projects.selectedProject
+  );
+
   return (
     <section id="portfolio" className={sectionStyle}>
-      {allProjects.map((project, index) => (
-        <CardProject key={index} project={project} />
-      ))}
+      {selectedProject ? (
+        <CardProject project={selectedProject} />
+      ) : (
+        <CardProject project={project} />
+      )}
     </section>
   );
 }

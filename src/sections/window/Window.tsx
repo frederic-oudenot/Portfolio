@@ -1,42 +1,46 @@
 import listMenu from "@/constants/listMenu";
 import Sidebar from "@/containers/sidebar/Sidebar";
-import functionWindow, {
-  closeWindow,
+import {
+  reduceWindow,
+  fullWindow,
   normalWindow,
-} from "@/utils/functionWindow";
+  closeWindow,
+} from "@/utils/classNameWindow";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import InnerWindow from "./InnerWindow";
+import { useAppSelector } from "@/hooks/Redux";
 
 interface WindowProp {
   id: string;
-  isOpen: boolean;
-  handleOpenWindow: (id: string, isOpen: boolean) => void;
 }
 
-export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
+export default function Window({ id }: WindowProp) {
   const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
   const [position, setPosition] = useState({ x: 100, y: 100 });
   const dragStartPosition = useRef({ x: 0, y: 0 });
 
+  const window = useAppSelector((state) =>
+    state.windows.windows.find((window) => window.id === id)
+  );
+
   useEffect(() => {
-    isOpen && id
-      ? setChangeClassname(normalWindow)
-      : setChangeClassname(closeWindow);
-  }, [isOpen, id]);
+    if (window) {
+      const { isOpen, isReduce, isGrowth }: any = window;
 
-  const selectedFunctionWindow = useCallback((buttonId: string) => {
-    const foundClassName = document
-      .getElementById(buttonId)!
-      .getAttribute("class");
-
-    const result = functionWindow(buttonId, id, foundClassName);
-    if (!result) {
-      return;
-    } else {
-      handleOpenWindow(result?.id, result?.isOpen);
-      setChangeClassname(result?.classWindow);
+      if (isOpen) {
+        setChangeClassname(normalWindow);
+        if (isGrowth) {
+          setChangeClassname(fullWindow);
+        } else if (isReduce) {
+          setChangeClassname(reduceWindow);
+        } else {
+          setChangeClassname(normalWindow);
+        }
+      } else {
+        setChangeClassname(closeWindow);
+      }
     }
-  }, []);
+  }, [window, id]);
 
   const onDragStart = useCallback(
     (e: any) => {
@@ -80,10 +84,7 @@ export default function Window({ id, isOpen, handleOpenWindow }: WindowProp) {
         }}
       >
         <div className="flex flex-row">
-          <Sidebar
-            selectedFunctionWindow={()=>selectedFunctionWindow}
-            id={`sidebar-${id}`}
-          />
+          <Sidebar windowId={id} id={`sidebar-${id}`} />
           {listMenu.map((menu, index) => (
             <Fragment key={index}>
               {menu?.id === id ? <InnerWindow content={menu} /> : null}

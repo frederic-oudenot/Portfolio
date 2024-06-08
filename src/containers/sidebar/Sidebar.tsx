@@ -1,28 +1,33 @@
-import SocialButton from "@/components/buttons/SocialButton";
 import allSocialMedia from "@/constants/allSocialMedia";
 import SideHeader from "../header/SideHeader";
 import allProjects from "@/constants/allProjects";
+import SideBarButton from "@/components/buttons/SideBarButton";
 interface SidebarProp {
   id: string;
-  selectedFunctionWindow: () => void;
+  windowId: string;
 }
-export default function Sidebar({ id, selectedFunctionWindow }: SidebarProp) {
+export default function Sidebar({
+  windowId,
+  id,
+}: SidebarProp) {
   return (
     <aside className="sticky top-0 h-full w-48 bg-white-700[.06] max-md:w-16">
-      <SideHeader handleClick={selectedFunctionWindow} />
+      <SideHeader
+        id={`side-header-${windowId}`}
+        windowId={windowId}
+      />
 
       {id === "sidebar-portfolio"
         ? allProjects.map((project, index) => (
-            <SocialButton
+            <SideBarButton
               key={index}
-              url={project?.url}
               id={project?.id}
               label={project?.name}
               source={project?.src}
             />
           ))
         : allSocialMedia.map((social, index) => (
-            <SocialButton
+            <SideBarButton
               key={index}
               url={social?.url}
               id={social?.id}

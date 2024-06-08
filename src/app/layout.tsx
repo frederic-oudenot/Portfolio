@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import ProviderWrapper from "@/hooks/ProviderWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
       </head>
       <html lang="en">
         <body className={inter.className}>
-          {children}
+          <ProviderWrapper>{children}</ProviderWrapper>
         </body>
       </html>
     </>

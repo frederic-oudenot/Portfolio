@@ -1,27 +1,32 @@
 "use client";
 import MainButton from "@/components/buttons/MainButton";
 import listMenu from "@/constants/listMenu";
+import { useAppDispatch } from "@/hooks/Redux";
+import { openWindow, closeAllWindows } from "@/store/reducers/windowSlice";
 
-interface NavBarProp {
-  handleOpenWindow: (id: string, isOpen: boolean) => void;
-  closeAllWindows: (isAllClose: boolean) => void;
-}
+export default function NavBar() {
+  const dispatch = useAppDispatch();
 
-export default function NavBar({
-  handleOpenWindow,
-  closeAllWindows,
-}: NavBarProp) {
+  function handleOpenWindow(WindowId: string) {
+    dispatch(openWindow(WindowId));
+  }
+
+  function handleCloseAllWindows(buttonId: string) {
+    dispatch(closeAllWindows());
+  }
+
   return (
     <>
       <nav className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2`}>
         <div className="flex items-center text-black gap-x-4">
           <i
-            onClick={() => closeAllWindows(true)}
+            id="apple-button"
+            onClick={() => handleCloseAllWindows("apple-button")}
             className="devicon-apple-original"
           />
           {listMenu.map((menu: any, index: number) => (
             <MainButton
-              handleOpenWindow={() => handleOpenWindow(menu?.id, true)}
+              handleOpenWindow={() => handleOpenWindow(menu?.id)}
               id={`button-${menu.id}`}
               key={`button-${index}`}
               label={menu?.name}

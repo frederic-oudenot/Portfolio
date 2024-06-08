@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import windowReducer from "@/store/reducers/windowSlice";
+import windowSlice from "@/store/reducers/windowSlice";
+import projectsSlice from "./reducers/projectsSlice";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    window: windowReducer,
+    windows: windowSlice,
+    projects: projectsSlice,
   },
 });
 

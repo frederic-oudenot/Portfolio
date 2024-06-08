@@ -1,25 +1,10 @@
 import MainButton from "@/components/buttons/MainButton";
-import Tag from "@/components/tag/Tag";
 import Description from "@/components/typography/Description";
 import Title from "@/components/typography/Title";
 import Image from "next/image";
 import Skills from "../skills/Skills";
 
-interface CardProjectProp {
-  project: {
-    id: string;
-    name: string;
-    description: string;
-    technologies: any;
-    state: string;
-    image: string;
-    src: string;
-    url: string;
-    view: string;
-  };
-}
-
-export default function CardProject({ project }: CardProjectProp) {
+export default function CardProject({project}: any) {
   return (
     <article className={articleStyle}>
       <Title id={project?.id} content={project?.name} variant={"white"} />
@@ -32,7 +17,7 @@ export default function CardProject({ project }: CardProjectProp) {
         alt={project?.name}
       />
 
-      <div className="flex flex-row gap-2 p-5">
+      <div className="grid grid-cols-3 p-5 gap-4">
         {project.technologies?.map((techno: string, index: number) => (
           <Skills key={index} techno={techno} />
         ))}

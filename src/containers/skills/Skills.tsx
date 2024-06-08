@@ -9,7 +9,7 @@ export default function Skills({ techno }: SkillsProp) {
     <section className={techno ? "grid gap-2" : "grid grid-cols-4 gap-4"}>
       {techno
         ? skills.map((skill, index) => {
-            if (skill.name === techno) {
+            if (skill.id === techno) {
               return <CardSkills key={index} skill={skill} widthCard={8} />;
             }
           })

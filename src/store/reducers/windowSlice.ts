@@ -1,34 +1,76 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface windowState {
+interface WindowState {
   id: string;
   isOpen: boolean;
+  isReduce: boolean;
+  isGrowth: boolean;
 }
 
-const initialState: windowState = {
-  id: "",
-  isOpen: false,
+interface WindowsState {
+  windows: WindowState[];
+}
+
+const initialState: WindowsState = {
+  windows: [],
 };
 
+function searchWindowById(state: WindowsState, id: string) {
+  return state.windows.find((window) => window.id === id);
+}
+
 const windowSlice = createSlice({
-  name: "window",
+  name: "windows",
   initialState,
   reducers: {
-    openWindow(state, action: { payload: windowState }) {
-      const windowId = action.payload;
+    openWindow(state, action: PayloadAction<any>) {
+      const foundWindow = searchWindowById(state, action.payload);
+
+      if (foundWindow) {
+        foundWindow.isOpen = true;
+      } else {
+        state.windows.push({
+          id: action.payload,
+          isOpen: true,
+          isReduce: false,
+          isGrowth: false,
+        });
+      }
     },
-    closeWindow(state, action: { payload: windowState }) {
-      const windowId = action.payload;
+    closeWindow(state, action: PayloadAction<any>) {
+      const foundWindow = searchWindowById(state, action.payload);
+
+      if (foundWindow) {
+        foundWindow.isOpen = false;
+      }
     },
-    reduceWindow(state, action: { payload: windowState }) {
-      const windowId = action.payload;
+    reduceWindow(state, action: PayloadAction<any>) {
+      const foundWindow = searchWindowById(state, action.payload);
+
+      if (foundWindow) {
+        foundWindow.isReduce = !foundWindow.isReduce;
+      }
     },
-    growthWindow(state, action: { payload: windowState }) {
-      const windowId = action.payload;
+    growthWindow(state, action: PayloadAction<any>) {
+      const foundWindow = searchWindowById(state, action.payload);
+
+      if (foundWindow) {
+        foundWindow.isGrowth = !foundWindow.isGrowth;
+      }
+    },
+    closeAllWindows(state) {
+      state.windows.forEach((window) => {
+        window.isOpen = false;
+      });
     },
   },
 });
 
-export const { openWindow, closeWindow, reduceWindow, growthWindow } =
-  windowSlice.actions;
+export const {
+  openWindow,
+  closeWindow,
+  reduceWindow,
+  growthWindow,
+  closeAllWindows,
+} = windowSlice.actions;
 export default windowSlice.reducer;
