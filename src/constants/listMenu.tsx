@@ -1,12 +1,9 @@
 import AboutSection from "@/sections/about/AboutSection";
 import ContactSection from "@/sections/contact/ContactSection";
 import PortfolioSection from "@/sections/portofolio/PortfolioSection";
+import SettingsSession from "@/sections/settings/SettingsSession";
 
 const listMenu = [
-  {
-    id: "home",
-    name: "Home",
-  },
   {
     id: "about",
     name: "About",
@@ -21,6 +18,11 @@ const listMenu = [
     id: "contact",
     name: "Contact",
     component: <ContactSection />,
+  },
+  {
+    id: "settings",
+    name: "Settings",
+    component: <SettingsSession />,
   },
 ];
 

@@ -8,6 +8,6 @@ export default function ContactSection() {
   );
 }
 
-const articleStyle = "flex flex-col place-items-center  gap-5";
+const articleStyle = "flex flex-1 flex-col place-items-center  gap-5";
 
-const sectionStyle = `${articleStyle}  p-10 bg-[#465952] text-white`;
+const sectionStyle = `${articleStyle}  p-10 bg-[#465952] text-white overflow-y-auto`;

@@ -2,11 +2,13 @@ import Image from "next/image";
 import SubTitle from "../typography/SubTitle";
 import { useAppDispatch } from "@/hooks/Redux";
 import { changeProject } from "@/store/reducers/projectsSlice";
+import { changeFamilyWallpaper } from "@/store/reducers/wallpaperSlice";
 
 interface SideBarButtonProp {
   id: string;
   label: string;
   source: string;
+  isProject?: boolean;
   url?: string;
 }
 
@@ -15,11 +17,16 @@ export default function SideBarButton({
   url,
   label,
   source,
+  isProject,
 }: SideBarButtonProp) {
   const dispatch = useAppDispatch();
+
   function handleOpenProject(projectId: string) {
-    dispatch(changeProject(projectId));
+    isProject
+      ? dispatch(changeProject(projectId))
+      : dispatch(changeFamilyWallpaper(projectId));
   }
+
   return (
     <>
       {url ? (
@@ -30,7 +37,7 @@ export default function SideBarButton({
           className="flex flex-row w-full h-16 justify-start items-center px-5 gap-2"
         >
           <Image width={30} height={30} src={source} alt={label} />
-          <SubTitle name={label} variant={"black"} />
+          <SubTitle content={label} variant={"black"} id={id} />
         </a>
       ) : (
         <button
@@ -39,7 +46,7 @@ export default function SideBarButton({
           className="flex flex-row w-full h-16 justify-start items-center px-5 gap-2"
         >
           <Image width={30} height={30} src={source} alt={label} />
-          <SubTitle name={label} variant={"black"} />
+          <SubTitle content={label} variant={"black"} id={id} />
         </button>
       )}
 

@@ -44,34 +44,51 @@ export default function Window({ id }: WindowProp) {
 
   const onDragStart = useCallback(
     (e: any) => {
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
       dragStartPosition.current = {
-        x: e.clientX - position.x,
-        y: e.clientY - position.y,
+        x: clientX - position.x,
+        y: clientY - position.y,
       };
     },
     [position]
   );
 
-  const onDrag = useCallback((e: any) => {
-    if (e.clientX === 0 && e.clientY === 0) return;
-    setPosition({
-      x: e.clientX - dragStartPosition.current.x,
-      y: e.clientY - dragStartPosition.current.y,
-    });
-  }, []);
+  const onDrag = useCallback(
+    (e: any) => {
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-  const onDragEnd = useCallback((e: any) => {
-    e.preventDefault();
-    setPosition({
-      x: e.clientX - dragStartPosition.current.x,
-      y: e.clientY - dragStartPosition.current.y,
-    });
-  }, []);
+      if (e.clientX === 0 && e.clientY === 0) return;
+      setPosition({
+        x: clientX - dragStartPosition.current.x,
+        y: clientY - dragStartPosition.current.y,
+      });
+    },
+    [position]
+  );
+
+  const onDragEnd = useCallback(
+    (e: any) => {
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+      e.preventDefault();
+      setPosition({
+        x: clientX - dragStartPosition.current.x,
+        y: clientY - dragStartPosition.current.y,
+      });
+    },
+    [position]
+  );
 
   return (
     <>
       <section
         draggable
+        onTouchStart={(e) => onDragStart(e)}
+        onTouchMove={(e) => onDrag(e)}
+        onTouchEnd={(e) => onDragEnd(e)}
         onDrag={(e) => onDrag(e)}
         onDragStart={(e) => onDragStart(e)}
         onDragOver={(e) => onDragEnd(e)}

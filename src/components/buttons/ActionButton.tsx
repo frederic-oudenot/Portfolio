@@ -22,7 +22,7 @@ export default function ActionButton({
       onClick={() => handleClick(id)}
       onMouseEnter={() => onMouseEnter()}
       id={id}
-      className={`flex rounded-full w-3 h-3 ${color} place-content-center`}
+      className={`flex rounded-full w-3 h-3 ${color} place-content-center hover:scale-125`}
     ></button>
   );
 }

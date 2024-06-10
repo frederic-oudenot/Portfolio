@@ -1,20 +1,24 @@
-import Image from "next/image";
-import allFooter from "../../constants/allFooter";
+import allFooter from "@/constants/allFooter";
+import { useAppDispatch } from "@/hooks/Redux";
+import { openWindow } from "@/store/reducers/windowSlice";
+import MenuButton from "@/components/buttons/MenuButtons";
 
 export default function Footer() {
+  const dispatch = useAppDispatch();
+
+  function handleOpenWindow(WindowId: string) {
+    dispatch(openWindow(WindowId));
+  }
+
   return (
-    <footer className="absolute bottom-0 flex justify-center items-center bg-slate-600 rounded-lg w-80 h-24">
+    <footer className="absolute flex justify-center mx-auto left-1/3 bottom-5 backdrop-blur-sm	shadow-[0_8px_32px_-0px_rgba(20,20,20,0.25)]  bg-white/20 rounded-full w-[24rem] h-20">
       {allFooter.map((button, index) => {
         return (
-          <button key={index} id={button.id}>
-            <Image
-              width={100}
-              height={100}
-              aria-label={button.label}
-              src={button.src}
-              alt={button.label}
-            />
-          </button>
+          <MenuButton
+            handleOpenWindow={handleOpenWindow}
+            button={button}
+            key={`button-footer-${index}`}
+          />
         );
       })}
     </footer>

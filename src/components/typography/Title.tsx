@@ -1,6 +1,6 @@
 interface TitleProp {
   id: string;
-  content: string;
+  content: string | undefined;
   variant: "white" | "black";
 }
 

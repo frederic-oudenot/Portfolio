@@ -29,8 +29,7 @@ const projectsSlice = createSlice({
     changeProject(state, action: PayloadAction<any>) {
       const foundProject = allProjects.find(
         (project) => project?.id === action.payload
-        );
-    console.log("🚀 ~ changeProject ~ action.payload:", action.payload)
+      );
       if (foundProject) {
         state.selectedProject = { ...foundProject };
       } else {

@@ -35,7 +35,7 @@ export default function SideHeader({ windowId, id }: NavigatorHeaderProp) {
   return (
     <header
       id={id}
-      className="relative w-96 h-10 flex content-center p-3 gap-x-1"
+      className="relative w-96 h-10 flex content-center p-3 gap-x-1 overflow-hidden"
     >
       <>
         {allActionColor.map((button: IAllActionColor, index: number) => (

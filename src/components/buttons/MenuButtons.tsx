@@ -1,23 +1,32 @@
+import Image from "next/image";
+
 interface MenuButtonProps {
-  handleOpenMenu: () => void;
+  handleOpenWindow: (windowId: string) => void;
+  button: {
+    id: string;
+    label: string;
+    src: string;
+  };
 }
 
-export default function MenuButton({ handleOpenMenu }: MenuButtonProps) {
+export default function MenuButton({
+  handleOpenWindow,
+  button,
+}: MenuButtonProps) {
   return (
     <div id="menu-icon" aria-label="menu-icon">
-      <button onClick={handleOpenMenu}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-12 h-12"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
-            clipRule="evenodd"
-          />
-        </svg>
+      <button
+        className={"hover:scale-[1.5] animate-pulse"}
+        onClick={() => handleOpenWindow(button.id)}
+        id={button.id}
+      >
+        <Image
+          width={80}
+          height={80}
+          aria-label={button.label}
+          src={button.src}
+          alt={button.label}
+        />
       </button>
     </div>
   );
