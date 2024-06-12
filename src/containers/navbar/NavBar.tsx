@@ -17,7 +17,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2`}>
+      <nav className={`flex-row content-center w-dvw h-10 bg-slate-50 p-2 max-md:hidden`}>
         <div className="flex items-center text-black gap-x-4">
           <i
             id="apple-button"

@@ -6,7 +6,7 @@ interface SkillsProp {
 }
 export default function Skills({ techno }: SkillsProp) {
   return (
-    <section className={techno ? "grid gap-2" : "grid grid-cols-4 gap-4"}>
+    <section className={techno ? "grid gap-2" : "grid grid-cols-4 gap-4 max-sm:grid-cols-2"}>
       {techno
         ? skills.map((skill, index) => {
             if (skill.id === techno) {

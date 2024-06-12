@@ -1,3 +1,5 @@
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { useAppSelector } from "@/hooks/Redux";
 import listMenu from "@/constants/listMenu";
 import Sidebar from "@/containers/sidebar/Sidebar";
 import {
@@ -6,9 +8,7 @@ import {
   normalWindow,
   closeWindow,
 } from "@/utils/classNameWindow";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import InnerWindow from "./InnerWindow";
-import { useAppSelector } from "@/hooks/Redux";
+import InnerWindow from "@/containers/inner-window/InnerWindow";
 
 interface WindowProp {
   id: string;
@@ -16,7 +16,7 @@ interface WindowProp {
 
 export default function Window({ id }: WindowProp) {
   const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
-  const [position, setPosition] = useState({ x: 100, y: 100 });
+  const [position, setPosition] = useState<any>({ x: 0, y: 70 });
   const dragStartPosition = useRef({ x: 0, y: 0 });
 
   const window = useAppSelector((state) =>
@@ -71,8 +71,8 @@ export default function Window({ id }: WindowProp) {
 
   const onDragEnd = useCallback(
     (e: any) => {
-      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+      const clientX = "touches" in e ? e.changedTouches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.changedTouches[0].clientY : e.clientY;
       e.preventDefault();
       setPosition({
         x: clientX - dragStartPosition.current.x,
@@ -101,10 +101,21 @@ export default function Window({ id }: WindowProp) {
         }}
       >
         <div className="flex flex-row">
-          <Sidebar windowId={id} id={`sidebar-${id}`} />
+          {window ? (
+            <Sidebar
+              windowId={id}
+              isReduce={window?.isReduce}
+              id={`sidebar-${id}`}
+            />
+          ) : (
+            <Sidebar windowId={id} id={`sidebar-${id}`} />
+          )}
+
           {listMenu.map((menu, index) => (
             <Fragment key={index}>
-              {menu?.id === id ? <InnerWindow content={menu} /> : null}
+              {menu?.id === id ? (
+                <InnerWindow isReduce={window?.isReduce} content={menu} />
+              ) : null}
             </Fragment>
           ))}
         </div>

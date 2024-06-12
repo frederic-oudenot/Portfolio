@@ -1,6 +1,5 @@
-import allWallpapers from "@/constants/allWallpapers";
-import CardWallpaper from "@/containers/card-wallpaper/CardWallpaper";
 import { useAppDispatch, useAppSelector } from "@/hooks/Redux";
+import CardWallpaper from "@/containers/card-wallpaper/CardWallpaper";
 import { changeWallpaper } from "@/store/reducers/wallpaperSlice";
 
 export default function SettingsSession() {
@@ -21,6 +20,7 @@ export default function SettingsSession() {
             return (
               <CardWallpaper
                 key={index}
+                onTouchEnd={handleChangeWallpaper}
                 handleChangeWallpaper={handleChangeWallpaper}
                 wallpaper={wallpaper}
               />
@@ -30,6 +30,7 @@ export default function SettingsSession() {
             return (
               <CardWallpaper
                 key={index}
+                onTouchEnd={handleChangeWallpaper}
                 handleChangeWallpaper={handleChangeWallpaper}
                 wallpaper={wallpaper}
               />
@@ -39,4 +40,4 @@ export default function SettingsSession() {
   );
 }
 
-const sectionStyle = `grid grid-cols-3 gap-5 p-5 bg-[#465952] place-items-center text-white overflow-y-scroll`;
+const sectionStyle = `h-screen grid grid-cols-3 gap-2 p-5 bg-[#465952] place-items-center text-white overflow-y-scroll`;

@@ -12,7 +12,7 @@ interface WindowsState {
 }
 
 const initialState: WindowsState = {
-  windows: [],
+  windows: [{ id: "about", isOpen: true, isReduce: false, isGrowth: false }],
 };
 
 function searchWindowById(state: WindowsState, id: string) {

@@ -3,6 +3,7 @@ import Title from "@/components/typography/Title";
 
 interface CardWallpaperProp {
   handleChangeWallpaper: (wallpaperId: string) => void;
+  onTouchEnd: (wallpaperId: string) => void;
   wallpaper: {
     id: string;
     src: string;
@@ -11,6 +12,7 @@ interface CardWallpaperProp {
 }
 
 export default function CardWallpaper({
+  onTouchEnd,
   handleChangeWallpaper,
   wallpaper,
 }: CardWallpaperProp) {
@@ -18,6 +20,9 @@ export default function CardWallpaper({
     <article className={articleStyle}>
       <div className="flex flex-col place-items-center cursor-pointer hover:scale-105">
         <img
+        onTouchEnd={() => {
+            handleChangeWallpaper(wallpaper.id);
+          }}
           onClick={() => {
             handleChangeWallpaper(wallpaper.id);
           }}

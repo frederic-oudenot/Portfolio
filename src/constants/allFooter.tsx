@@ -5,9 +5,9 @@ const allFooter = [
     src: "https://img.icons8.com/?size=100&id=68762&format=png&color=000000",
   },
   {
-    id: "navigator",
-    label: "Navigation",
-    src: "https://img.icons8.com/?size=70&id=5wcSgDtlAFTS&format=png&color=000000",
+    id: "portfolio",
+    label: "Portfolio",
+    src: "https://img.icons8.com/?size=100&id=113844&format=png&color=000000",
   },
   {
     id: "contact",

@@ -19,6 +19,7 @@ export default function ActionButton({
 
   return (
     <button
+      onTouchEnd={() => handleClick(id)}
       onClick={() => handleClick(id)}
       onMouseEnter={() => onMouseEnter()}
       id={id}

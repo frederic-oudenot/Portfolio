@@ -16,7 +16,7 @@ export default function MenuButton({
   return (
     <div id="menu-icon" aria-label="menu-icon">
       <button
-        className={"hover:scale-[1.5] animate-pulse"}
+        className={"hover:animate-bounce"}
         onClick={() => handleOpenWindow(button.id)}
         id={button.id}
       >

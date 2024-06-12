@@ -6,6 +6,7 @@ import listMenu from "@/constants/listMenu";
 import NavBar from "@/containers/navbar/NavBar";
 import Footer from "@/containers/footer/Footer";
 import { useAppSelector } from "@/hooks/Redux";
+import Modal from "@/containers/modal/Modal";
 
 export default function Home() {
   const [display, SetDisplay] = useState<Boolean>(false);
@@ -36,13 +37,14 @@ export default function Home() {
                 }
               : { backgroundImage: `url(${wallpaper.src})` }
           }
-          className={`relative bg-center bg-cover h-screen m-auto`}
+          className={`relative bg-center bg-cover h-screen m-auto `}
         >
           {display ? (
             <>
               <NavBar />
+              <Modal />
               {listMenu.map((menu, index) => (
-                <Window  key={index} id={menu.id} />
+                <Window key={index} id={menu.id} />
               ))}
               <Footer />
             </>

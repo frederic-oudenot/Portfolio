@@ -2,13 +2,14 @@ import allSocialMedia from "@/constants/allSocialMedia";
 import SideHeader from "../header/SideHeader";
 import allProjects from "@/constants/allProjects";
 import SideBarButton from "@/components/buttons/SideBarButton";
-import allWallpapers, { familyWallpaper } from "@/constants/allWallpapers";
+import { familyWallpaper } from "@/constants/allWallpapers";
 interface SidebarProp {
   id: string;
   windowId: string;
+  isReduce?: boolean;
 }
-export default function Sidebar({ windowId, id }: SidebarProp) {
-  function renderSideBar(windowsId: string) {
+export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
+  function renderSideBar(windowId: string) {
     switch (windowId) {
       case "portfolio":
         return allProjects.map((project, index) => (
@@ -45,7 +46,8 @@ export default function Sidebar({ windowId, id }: SidebarProp) {
   return (
     <aside className="sticky top-0 h-full w-48 bg-white-700[.06] overflow-hidden max-md:w-16">
       <SideHeader id={`side-header-${windowId}`} windowId={windowId} />
-      {renderSideBar(windowId)}
+
+      {isReduce && id ? null : renderSideBar(windowId)}
     </aside>
   );
 }

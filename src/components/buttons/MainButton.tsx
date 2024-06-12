@@ -12,23 +12,23 @@ export default function MainButton({
   link,
   handleOpenWindow,
 }: MainButtonProps) {
+  function onTouchEnd(url: string) {
+    window.open(url, "_blank");
+  }
   return (
     <>
       {link ? (
         <Link
           id={id}
-          className="outline rounded-md outline-offset-1 outline-white-500 p-1 hover:bg-indigo-500"
+          onTouchEnd={() => onTouchEnd(link)}
+          className="outline rounded-md outline-offset-1 outline-white-500 p-1 hover:animate-bounce"
           target="_blank"
           href={link}
         >
           {label}
         </Link>
       ) : (
-        <button
-          id={id}
-          onClick={handleOpenWindow}
-          className="text-black"
-        >
+        <button id={id} onClick={handleOpenWindow} className="text-black">
           {label}
         </button>
       )}

@@ -10,16 +10,22 @@ export default function AboutSection() {
       <article className={articleStyle}>
         <Title id={"who-i-am"} content={allAboutMe?.section} variant="white" />
         <Avatar />
-        <Title id={"welcome"} content={allAboutMe?.title} variant="white" />
-        <Title id={"job"} content={"Développeur Fullstack"} variant="white" />
+        <Title id={"job"} content={allAboutMe?.job} variant="white" />
 
         {allAboutMe?.descriptionAbout?.map((data, index) => (
           <Description key={index} content={data} />
         ))}
       </article>
 
+      {/* <article className={articleStyle}>
+        <Title id={"cursus"} content={allAboutMe?.title2} variant="white" />
+        {allAboutMe?.descriptionCursus.map((data, index) => (
+          <Description key={index} content={data} />
+        ))}
+      </article> */}
+
       <article className={articleStyle}>
-        <Title id={"skills"} content={allAboutMe?.title2} variant="white" />
+        <Title id={"skills"} content={allAboutMe?.title3} variant="white" />
         {allAboutMe?.descriptionSkills.map((data, index) => (
           <Description key={index} content={data} />
         ))}
