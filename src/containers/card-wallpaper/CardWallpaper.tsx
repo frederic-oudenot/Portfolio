@@ -26,7 +26,7 @@ export default function CardWallpaper({
           onClick={() => {
             handleChangeWallpaper(wallpaper.id);
           }}
-          className="rounded-lg w-54 h-32"
+          className="rounded-lg w-54 h-32 max-md:w-32 max-md:h-24"
           src={wallpaper.src}
           alt={wallpaper.id}
         />
