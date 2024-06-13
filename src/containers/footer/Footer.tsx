@@ -27,4 +27,4 @@ export default function Footer() {
   );
 }
 
-const mobileStyle = `max-md:w-[12rem] max-md:top-5 max-md:h-12 max-md:inset-y-1/4 max-md:left-1/3`;
+const mobileStyle = `max-md:my-0 max-md:inset-0`;

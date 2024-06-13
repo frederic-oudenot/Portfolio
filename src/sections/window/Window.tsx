@@ -19,6 +19,7 @@ export default function Window({ id }: WindowProp) {
   const [position, setPosition] = useState<any>({ x: 0, y: 70 });
   const dragStartPosition = useRef({ x: 0, y: 0 });
 
+
   const window = useAppSelector((state) =>
     state.windows.windows.find((window) => window.id === id)
   );
