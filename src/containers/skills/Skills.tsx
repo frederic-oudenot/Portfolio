@@ -10,11 +10,11 @@ export default function Skills({ techno }: SkillsProp) {
       {techno
         ? skills.map((skill, index) => {
             if (skill.id === techno) {
-              return <CardSkills key={index} skill={skill} widthCard={8} />;
+              return <CardSkills key={index} skill={skill} widthCard={10} />;
             }
           })
         : skills.map((skill, index) => {
-            return <CardSkills key={index} skill={skill} widthCard={8} />;
+            return <CardSkills key={index} skill={skill} widthCard={10} />;
           })}
     </section>
   );

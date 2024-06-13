@@ -24,6 +24,7 @@ export default function Session({ SetDisplay }: SessionProp) {
   }
   return (
     <section
+    
       className="absolute w-full h-screen place-content-center z-10"
       id="session"
     >

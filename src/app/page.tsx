@@ -37,7 +37,7 @@ export default function Home() {
                 }
               : { backgroundImage: `url(${wallpaper.src})` }
           }
-          className={`relative bg-center bg-cover h-screen m-auto `}
+          className={`overflow-hidden size-full relative bg-center bg-cover h-screen m-auto`}
         >
           {display ? (
             <>

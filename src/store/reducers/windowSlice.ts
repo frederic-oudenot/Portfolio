@@ -5,6 +5,7 @@ interface WindowState {
   isOpen: boolean;
   isReduce: boolean;
   isGrowth: boolean;
+  zIndex: number;
 }
 
 interface WindowsState {
@@ -12,11 +13,19 @@ interface WindowsState {
 }
 
 const initialState: WindowsState = {
-  windows: [{ id: "about", isOpen: true, isReduce: false, isGrowth: false }],
+  windows: [
+    { id: "about", isOpen: true, isReduce: false, isGrowth: false, zIndex: 20 },
+  ],
 };
 
 function searchWindowById(state: WindowsState, id: string) {
   return state.windows.find((window) => window.id === id);
+}
+
+function searchWindowOpened(state: WindowsState, id: string) {
+  return state.windows.forEach((window) =>
+    window.id === id ? (window.zIndex = 20) : (window.zIndex = 10)
+  );
 }
 
 const windowSlice = createSlice({
@@ -28,12 +37,25 @@ const windowSlice = createSlice({
 
       if (foundWindow) {
         foundWindow.isOpen = true;
+        foundWindow.zIndex = 20;
+
+        state.windows.forEach((window) => {
+          if (window.id !== action.payload) {
+            window.zIndex = 10;
+          }
+        });
       } else {
         state.windows.push({
           id: action.payload,
           isOpen: true,
           isReduce: false,
           isGrowth: false,
+          zIndex: 20,
+        });
+        state.windows.forEach((window) => {
+          if (window.id !== action.payload) {
+            window.zIndex = 10;
+          }
         });
       }
     },

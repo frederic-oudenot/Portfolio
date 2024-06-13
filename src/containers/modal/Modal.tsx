@@ -13,7 +13,7 @@ export default function Modal() {
         <section
           onClick={handleCloseModal}
           onTouchEnd={handleCloseModal}
-          className="absolute top-1/4 left-1/4 max-w-md max-h-md rounded-lg bg-white p-10 auto-y-scroll z-20 max-md:max-w-sm max-md:max-h-sm"
+          className="absolute inset-1/4 m-auto max-w-md max-h-md rounded-lg bg-white p-10 auto-y-scroll z-50 max-md:max-w-sm max-md:max-h-sm"
           id={"modal"}
         >
           <button className="absolute text-black right-10 hover:scale-125">

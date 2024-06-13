@@ -86,9 +86,6 @@ export default function Window({ id }: WindowProp) {
     <>
       <section
         draggable
-        onTouchStart={(e) => onDragStart(e)}
-        onTouchMove={(e) => onDrag(e)}
-        onTouchEnd={(e) => onDragEnd(e)}
         onDrag={(e) => onDrag(e)}
         onDragStart={(e) => onDragStart(e)}
         onDragOver={(e) => onDragEnd(e)}
@@ -98,6 +95,7 @@ export default function Window({ id }: WindowProp) {
           position: "absolute",
           top: `${position.y}px`,
           left: `${position.x}px`,
+          zIndex: `${window?.zIndex}`,
         }}
       >
         <div className="flex flex-row">
