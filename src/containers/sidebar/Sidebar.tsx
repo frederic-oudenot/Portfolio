@@ -44,7 +44,7 @@ export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
     }
   }
   return (
-    <aside className="sticky top-0 h-full w-48 bg-white-700[.06] overflow-hidden max-md:w-16">
+    <aside className="sticky top-0 h-full w-48 bg-white-700[.06] max-md:w-16">
       <SideHeader id={`side-header-${windowId}`} windowId={windowId} />
 
       {isReduce && id ? null : renderSideBar(windowId)}

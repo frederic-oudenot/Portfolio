@@ -18,4 +18,4 @@ export default function PortfolioSection() {
   );
 }
 
-const sectionStyle = `flex flex-col place-items-center gap-2 w-full h-full p-10 bg-[#465952] text-white gap-10 overflow-y-auto`;
+const sectionStyle = `flex flex-col place-items-center gap-2 p-10 bg-[#465952] text-white gap-10 h-full`;

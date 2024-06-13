@@ -37,4 +37,4 @@ export default function AboutSection() {
 
 const articleStyle = "flex flex-col place-items-center gap-5";
 
-const sectionStyle = `${articleStyle} p-10 bg-[#465952] text-white overflow-y-auto`;
+const sectionStyle = `${articleStyle} p-10 bg-[#465952] text-white `;

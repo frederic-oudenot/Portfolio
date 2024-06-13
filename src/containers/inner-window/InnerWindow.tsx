@@ -7,7 +7,9 @@ interface InnerWindowProp {
 
 export default function InnerWindow({ isReduce, content }: InnerWindowProp) {
   return (
-    <div className={isReduce ? "" : "flex-1 overflow-y-auto"}>
+    <div
+      className={`flex-1 h-full`}
+    >
       <NavigatorHeader id={content?.id} content={content?.name} />
       {isReduce ? null : content?.component}
     </div>

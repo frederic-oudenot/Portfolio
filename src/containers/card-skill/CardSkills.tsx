@@ -15,7 +15,7 @@ export default function CardSkills({ skill, widthCard }: CardSkillsProps) {
     setIsHovered(hover);
     setHoveredCard(id);
   }
-  const cardStyle = `flex flex-col p-2 gap-2 items-center place-content-center rounded-lg w-[${widthCard}rem] h-[${widthCard}rem]`;
+  const cardStyle = `flex flex-col p-2 gap-2 items-center place-content-center rounded-lg w-[8rem] h-[8rem]`;
   const showCardStyle = `${cardStyle} bg-[#F2F2F0]  hover:scale-105`;
   const hiddenCardStyle = `${cardStyle} bg-[#F2A9A2]`;
   return (
@@ -37,7 +37,7 @@ export default function CardSkills({ skill, widthCard }: CardSkillsProps) {
           </>
         ) : (
           <img
-            className={`w-[${widthCard}rem] h-[${widthCard}rem]`}
+            className={`w-[8rem] h-[8rem]`}
             src="https://img.icons8.com/?size=100&id=ySxoMWYW1c3u&format=png&color=000000"
           />
         )}

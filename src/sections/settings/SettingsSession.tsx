@@ -40,4 +40,4 @@ export default function SettingsSession() {
   );
 }
 
-const sectionStyle = `h-screen grid grid-cols-3 gap-2 p-5 bg-[#465952] place-items-center text-white overflow-y-auto`;
+const sectionStyle = `h-screen grid grid-cols-3 gap-2 p-5 bg-[#465952] place-items-center text-white`;
