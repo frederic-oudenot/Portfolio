@@ -10,4 +10,4 @@ export default function ContactSection() {
 
 const articleStyle = "flex flex-1 flex-col place-items-center  gap-5";
 
-const sectionStyle = `${articleStyle} h-screen p-10 bg-[#465952] text-white `;
+const sectionStyle = `${articleStyle} h-full p-10 bg-[#465952] text-white max-md:h-screen`;

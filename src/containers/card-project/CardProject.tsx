@@ -29,7 +29,7 @@ export default function CardProject({ project }: any) {
         ))}
       </div>
 
-      <footer className="flex flex-row mb-3">
+      <footer className="flex flex-row max-md:mb-10">
         <MainButton
           label={project?.view}
           link={project?.url}

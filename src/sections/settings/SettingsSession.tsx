@@ -14,30 +14,32 @@ export default function SettingsSession() {
     dispatch(changeWallpaper(wallapaperId));
   }
   return (
-    <section id="about" className={sectionStyle}>
-      {selectedFamilyWallpaper
-        ? selectedFamilyWallpaper.map((wallpaper, index) => {
-            return (
-              <CardWallpaper
-                key={index}
-                onTouchEnd={handleChangeWallpaper}
-                handleChangeWallpaper={handleChangeWallpaper}
-                wallpaper={wallpaper}
-              />
-            );
-          })
-        : familyWallpaper.map((wallpaper, index) => {
-            return (
-              <CardWallpaper
-                key={index}
-                onTouchEnd={handleChangeWallpaper}
-                handleChangeWallpaper={handleChangeWallpaper}
-                wallpaper={wallpaper}
-              />
-            );
-          })}
-    </section>
+    <div className="bg-[#465952] h-screen">
+      <section id="about" className={sectionStyle}>
+        {selectedFamilyWallpaper
+          ? selectedFamilyWallpaper.map((wallpaper, index) => {
+              return (
+                <CardWallpaper
+                  key={index}
+                  onTouchEnd={handleChangeWallpaper}
+                  handleChangeWallpaper={handleChangeWallpaper}
+                  wallpaper={wallpaper}
+                />
+              );
+            })
+          : familyWallpaper.map((wallpaper, index) => {
+              return (
+                <CardWallpaper
+                  key={index}
+                  onTouchEnd={handleChangeWallpaper}
+                  handleChangeWallpaper={handleChangeWallpaper}
+                  wallpaper={wallpaper}
+                />
+              );
+            })}
+      </section>
+    </div>
   );
 }
 
-const sectionStyle = `h-screen grid grid-cols-3 gap-2 p-5 bg-[#465952] place-items-center text-white`;
+const sectionStyle = `grid grid-cols-3 gap-2 p-5 place-items-center text-white max-md:h-screen max-md: flex flex-wrap`;

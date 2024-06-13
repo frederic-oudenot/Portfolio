@@ -8,7 +8,7 @@ export default function SubTitle({ id, content, variant }: SubTitleProp) {
   return (
     <h3
       id={`subtitle-${id}`}
-      className={`text-center text-sm w-full text-${variant} max-md:hidden`}
+      className={`text-center text-md w-full text-${variant} max-md:hidden`}
     >
       {content}
     </h3>
