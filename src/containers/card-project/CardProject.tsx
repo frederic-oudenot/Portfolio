@@ -15,13 +15,16 @@ export default function CardProject({ project }: any) {
         variant={"white"}
       />
       <Description content={project?.description} />
-      <Image
-        width={500}
-        height={300}
-        className={"rounded-lg"}
-        src={project?.image}
-        alt={project?.name}
-      />
+      {project.image.map((img: string, index: number) => (
+        <Image
+          key={index}
+          width={500}
+          height={300}
+          className={"rounded-lg"}
+          src={img}
+          alt={img}
+        />
+      ))}
 
       <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-2">
         {project.technologies?.map((techno: string, index: number) => (
