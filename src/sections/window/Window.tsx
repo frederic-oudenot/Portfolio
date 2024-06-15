@@ -99,7 +99,7 @@ export default function Window({ id }: WindowProp) {
           zIndex: `${window?.zIndex}`,
         }}
       >
-        <div className="flex flex-row flex-grow">
+        <div className="flex flex-row">
           {window ? (
             <Sidebar
               windowId={id}

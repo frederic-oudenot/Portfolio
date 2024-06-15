@@ -9,17 +9,26 @@ import { useAppSelector } from "@/hooks/Redux";
 import Modal from "@/containers/modal/Modal";
 
 export default function Home() {
+  // useState pour afficher la session mac
   const [display, SetDisplay] = useState<Boolean>(false);
+  // Fournir le wallpaper initial lors du chargement de la web app
   const wallpaper = useAppSelector((state) => state.wallpaper.wallpaper);
+  // Fournir le wallapaper lors d'un choix d'un utilisateur
   const selectedwallpaper = useAppSelector(
     (state) => state.wallpaper.selectedWallpaper
   );
 
+  // Chargement selon variable display
   useEffect(() => {
+    // Si display = true, modification et ouverture de la session
     if (display) {
+      // Récupération de l'élément flouté
       const blurElement = document.getElementById("blur");
+      //Récupération de l'élément de session
       const sessionElement = document.getElementById("session");
+      // Retirer la classe et le fou initiale
       blurElement!.classList.remove("blur-md");
+      //Retirer le composant session
       sessionElement!.style.display = "none";
     }
   }, [display]);
