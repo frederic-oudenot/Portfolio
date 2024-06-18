@@ -28,11 +28,9 @@ export default function CardProject({ project }: any) {
         ))}
       </div>
 
-      <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-2">
         {project.technologies?.map((techno: string, index: number) => (
           <Skills key={index} techno={techno} />
         ))}
-      </div>
 
       <footer className="flex flex-row max-md:mb-10">
         <MainButton
