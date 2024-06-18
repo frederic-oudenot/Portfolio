@@ -15,16 +15,18 @@ export default function CardProject({ project }: any) {
         variant={"white"}
       />
       <Description content={project?.description} />
-      {project.image.map((img: string, index: number) => (
-        <Image
-          key={index}
-          width={500}
-          height={300}
-          className={"rounded-lg"}
-          src={img}
-          alt={img}
-        />
-      ))}
+      <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-1">
+        {project.image.map((img: string, index: number) => (
+          <Image
+            key={index}
+            width={500}
+            height={300}
+            className={"rounded-lg"}
+            src={img}
+            alt={img}
+          />
+        ))}
+      </div>
 
       <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-2">
         {project.technologies?.map((techno: string, index: number) => (
@@ -43,4 +45,5 @@ export default function CardProject({ project }: any) {
   );
 }
 
-const articleStyle = "flex flex-col place-items-center gap-y-2";
+const articleStyle =
+  "flex flex-col place-items-center gap-y-2 h-screen max-md:h-full";
