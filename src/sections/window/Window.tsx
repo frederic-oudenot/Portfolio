@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { useAppSelector } from "@/hooks/Redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/Redux";
 import listMenu from "@/constants/listMenu";
 import Sidebar from "@/containers/sidebar/Sidebar";
 import {
@@ -9,6 +9,7 @@ import {
   closeWindow,
 } from "@/utils/classNameWindow";
 import InnerWindow from "@/containers/inner-window/InnerWindow";
+import { openWindow, selectWindow } from "@/store/reducers/windowSlice";
 
 interface WindowProp {
   id: string;
@@ -18,8 +19,7 @@ export default function Window({ id }: WindowProp) {
   const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
   const [position, setPosition] = useState<any>({ x: 0, y: 70 });
   const dragStartPosition = useRef({ x: 0, y: 0 });
-
-
+  const dispatch = useAppDispatch();
   const window = useAppSelector((state) =>
     state.windows.windows.find((window) => window.id === id)
   );
@@ -42,7 +42,9 @@ export default function Window({ id }: WindowProp) {
       }
     }
   }, [window, id]);
-
+  function handleClick(id: string) {
+    dispatch(selectWindow(id));
+  }
   const onDragStart = useCallback(
     (e: any) => {
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
@@ -87,6 +89,7 @@ export default function Window({ id }: WindowProp) {
     <>
       <section
         draggable
+        onClick={() => handleClick(id)}
         onDrag={(e) => onDrag(e)}
         onDragStart={(e) => onDragStart(e)}
         onDragOver={(e) => onDragEnd(e)}

@@ -36,7 +36,7 @@ const windowSlice = createSlice({
       const foundWindow = searchWindowById(state, action.payload);
 
       if (foundWindow) {
-        foundWindow.isOpen = true;
+        foundWindow.isOpen = !foundWindow.isOpen;
         foundWindow.zIndex = 20;
 
         state.windows.forEach((window) => {
@@ -63,7 +63,7 @@ const windowSlice = createSlice({
       const foundWindow = searchWindowById(state, action.payload);
 
       if (foundWindow) {
-        foundWindow.isOpen = false;
+        foundWindow.isOpen = !foundWindow.isOpen;
       }
     },
     reduceWindow(state, action: PayloadAction<any>) {
@@ -85,6 +85,18 @@ const windowSlice = createSlice({
         window.isOpen = false;
       });
     },
+    selectWindow(state, action: PayloadAction<any>) {
+      const foundWindow = searchWindowById(state, action.payload);
+
+      if (foundWindow) {
+        foundWindow.zIndex = 20;
+        state.windows.forEach((window) => {
+          if (window.id !== action.payload) {
+            window.zIndex = 10;
+          }
+        });
+      }
+    },
   },
 });
 
@@ -94,5 +106,6 @@ export const {
   reduceWindow,
   growthWindow,
   closeAllWindows,
+  selectWindow,
 } = windowSlice.actions;
 export default windowSlice.reducer;

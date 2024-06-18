@@ -17,6 +17,7 @@ export default function SideHeader({ windowId, id }: NavigatorHeaderProp) {
   const dispatch = useAppDispatch();
 
   function handleClick(buttonId: string) {
+
     switch (buttonId) {
       case "button-close":
         dispatch(closeWindow(windowId));
