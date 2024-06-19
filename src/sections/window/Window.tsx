@@ -47,6 +47,7 @@ export default function Window({ id }: WindowProp) {
   }
   const onDragStart = useCallback(
     (e: any) => {
+      console.log(e);
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 

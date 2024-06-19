@@ -15,7 +15,6 @@ export default function CardProject({ project }: any) {
         variant={"white"}
       />
       <Description content={project?.description} />
-      <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-1">
         {project.image.map((img: string, index: number) => (
           <Image
             key={index}
@@ -26,11 +25,11 @@ export default function CardProject({ project }: any) {
             alt={img}
           />
         ))}
-      </div>
-
+      <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-2">
         {project.technologies?.map((techno: string, index: number) => (
           <Skills key={index} techno={techno} />
         ))}
+      </div>
 
       <footer className="flex flex-row max-md:mb-10">
         <MainButton
@@ -44,4 +43,4 @@ export default function CardProject({ project }: any) {
 }
 
 const articleStyle =
-  "flex flex-col place-items-center gap-y-2 h-screen max-md:h-full";
+  "flex flex-col place-items-center gap-y-2 h-full max-md:h-full";
