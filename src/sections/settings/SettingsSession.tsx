@@ -10,6 +10,7 @@ export default function SettingsSession() {
   const selectedFamilyWallpaper = useAppSelector(
     (state) => state.wallpaper.selectedFamilyWallpaper
   );
+
   function handleChangeWallpaper(wallapaperId: string) {
     dispatch(changeWallpaper(wallapaperId));
   }

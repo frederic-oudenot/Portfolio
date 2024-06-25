@@ -1,8 +1,29 @@
 const language = {
+  //Generic
+  genericContent: {
+    closeButton: "X",
+    titleMail: "Votre e-mail",
+    placeholderEmail: "email@gmail.com",
+    placeholderName: "Nom prénom",
+    placeholderMessage: "Votre message ici !",
+    errorMessage: "Manque votre message",
+    errorName: "Manque votre nom",
+    errorMail: "Mail incorrect",
+  },
+  //Modal
+  modalContent: {
+    titleWelcome: "Bienvenue sur OS Experience",
+    welcome:
+      "Bienvenue sur mon portfolio, conçu pour offrir une expérience utilisateur unique et immersive, inspirée par le système d'exploitation macOS. Explorez mes compétences, découvrez mes projets et apprenez-en plus sur mon parcours professionnel à travers une interface élégante et intuitive.",
+    developBy: "© 2024 - Developper par Frédéric OUDENOT",
+  },
   //Welcome
-  welcome: "Bienvenue sur le portfolio de Frédéric OUDENOT",
+  welcomePage: {
+    messageWelcome: "Bienvenue sur le portfolio de Frédéric OUDENOT",
+    click: "Cliquer sur le bouton pour entrer",
+  },
   // About
-  allAboutMe: {
+  aboutPage: {
     section: "QUI SUIS-JE ?",
     job: "Développeur Fullstack",
     descriptionAbout: [
@@ -11,7 +32,7 @@ const language = {
       "Mon parcours en ingénierie m'a permis de développer des compétences dans la gestion de projet, la résolution de problèmes et l'assurance qualité. Des compétences essentielles pour garantir la conformité des produits et respecter les exigences clients. ",
       "Fort de cette transition, je suis déterminé à relever de nouveaux défis et à contribuer à des projets innovants et challengeant dans le développement web et mobile et d'autres domaines ",
     ],
-    title2: "MON PARCOURS",
+    cursus: "MON PARCOURS",
     descriptionCursus: [
       "MARS-AVRIL 2024 : LA TOUCHE MUSICALE - DEVELOPPEUR FRONT-END",
       "Durant un stage de 3 mois dans une start-up spécialisée dans l'apprentissage du piano, j'ai réalisé la refonte du front-end de leur web application. Ce projet, qui sortira à la fin de l'année, m'a permis d'appliquer mes connaissances en NextJS, Typescript et Material UI dans un contexte professionnel. En complément, il fallait réalisé des mises à jour de leurs endpoints de l'API pour obtenir les données de MongoDB et via le framework Sails.js",
@@ -20,13 +41,12 @@ const language = {
       "JUIN 2012 - JUIN 2023 - SAFRAN - INGENIEUR QUALITE PRODUCTION",
       "Avec 11 années d'expérience chez Safran, j'ai résolu des non-conformités, préparé des audits et assuré la qualité de produits allant des aubes de fan aux sièges de classe affaires et première classe pour des compagnies aériennes. Cette expérience m'a doté d'un souci du détail et d'une rigueur inébranlable.",
     ],
-    title3: "MES COMPETENCES",
+    skills: "MES COMPETENCES",
     descriptionSkills: [
       "Ci-dessous, vous trouverez une liste des compétences non exhautives des technologies utilisées. La vie est un long chemin d'apprentissage, il ne faut pas se fixer des limites !",
     ],
   },
-  // Projects
-  allProjects: [
+  ProjectsPage: [
     {
       id: "la-touche-musicale",
       name: "La Touche Musicale",
@@ -65,14 +85,16 @@ const language = {
       ],
       state: "refonte in-progress",
       image: ["/projects/ocheerz/homepage.png"],
-      url: "https://ocheerz.ovh/",
+      url: "https://ocheerz-front-5vmm.onrender.com/",
       view: "voir projet",
       src: "https://img.icons8.com/?size=100&id=MYGi2BoeVcwy&format=png&color=000000",
     },
   ],
   // Contact
-  descriptionContact:
-    "Je suis toujours ouvert à de nouvelles opportunités et collaborations. Si vous avez des questions, des projets ou simplement envie de discuter, n'hésitez pas à me contacter via le formulaire ci-dessous. A bientôt !",
+  ContactPage: {
+    descriptionContact:
+      "Je suis toujours ouvert à de nouvelles opportunités et collaborations. Si vous avez des questions, des projets ou simplement envie de discuter, n'hésitez pas à me contacter via le formulaire ci-dessous. A bientôt !",
+  },
   // Social Media
   allSocialMedia: [
     {
@@ -95,6 +117,41 @@ const language = {
       url: "https://drive.google.com/file/d/12HUDIFKqIxYO8UXzfQJFtFcphMEZUrZO/view?usp=drive_link",
       source:
         "https://img.icons8.com/?size=100&id=hhu50WbNuf90&format=png&color=000000",
+    },
+  ],
+  //Footer
+  Footer: [
+    {
+      id: "about",
+      label: "A propos de moi",
+      src: "https://img.icons8.com/?size=100&id=68762&format=png&color=000000",
+    },
+    {
+      id: "portfolio",
+      label: "Portfolio",
+      src: "https://img.icons8.com/?size=100&id=113844&format=png&color=000000",
+    },
+    {
+      id: "contact",
+      label: "Message",
+      src: "https://img.icons8.com/?size=100&id=7MWOdHmoNCGD&format=png&color=000000",
+    },
+    {
+      id: "settings",
+      label: "Paramétres",
+      src: "https://img.icons8.com/?size=100&id=114421&format=png&color=000000",
+    },
+  ],
+  familyWallpaper: [
+    {
+      id: "realistic",
+      name: "realité",
+      src: "https://img.icons8.com/?size=100&id=NIdoxzMO8z3u&format=png&color=000000",
+    },
+    {
+      id: "hobbies",
+      name: "loisirs",
+      src: "https://img.icons8.com/?size=100&id=65649&format=png&color=000000",
     },
   ],
 };

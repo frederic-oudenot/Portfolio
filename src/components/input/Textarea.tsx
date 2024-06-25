@@ -1,13 +1,18 @@
+import { useAppSelector } from "@/hooks/Redux";
+
 interface TextAreaProp {
   id: string;
   handleChange: (e: any) => void;
 }
 
 export default function TextArea({ id, handleChange }: TextAreaProp) {
+  const userLanguage = useAppSelector(
+    (state) => state.languages.initialLanguage
+  );
   return (
     <textarea
       id={id}
-      placeholder="Votre message ici!"
+      placeholder={userLanguage?.genericContent.placeholderMessage}
       onChange={handleChange}
       required
       resize-none="false"

@@ -3,10 +3,10 @@ import Input from "@/components/input/Input";
 import TextArea from "@/components/input/Textarea";
 import Label from "@/components/label/Label";
 import Description from "@/components/typography/Description";
-import language from "@/translation/fr/fr";
 import { useEffect, useState } from "react";
 import { sendEmail } from "@/utils/sendMail";
 import Popup from "@/components/pop-up/Popup";
+import { useAppSelector } from "@/hooks/Redux";
 
 interface InputUser {
   name?: string;
@@ -20,6 +20,9 @@ interface MessageError {
 }
 
 export default function FormContact() {
+  const userLanguage = useAppSelector(
+    (state) => state.languages.initialLanguage
+  );
   const [userName, setUserName] = useState<InputUser>();
   const [userMail, setUserMail] = useState<InputUser>();
   const [userMessage, setUserMessage] = useState<InputUser>();
@@ -43,13 +46,22 @@ export default function FormContact() {
     const isValidMail = checkMailUserInput(userMail);
 
     if (!userMessage || userMessage.message === "") {
-      setMessageError({ id: "message", text: "Manque votre message" });
+      setMessageError({
+        id: "message",
+        text: userLanguage?.genericContent.errorMessage,
+      });
     }
     if (!userName || userName.name === "") {
-      setMessageError({ id: "name", text: "Manque votre nom" });
+      setMessageError({
+        id: "name",
+        text: userLanguage?.genericContent.errorName,
+      });
     }
     if (!isValidMail) {
-      setMessageError({ id: "mail", text: "Mail incorrect" });
+      setMessageError({
+        id: "mail",
+        text: userLanguage?.genericContent.errorMail,
+      });
     }
 
     if (isValidMail && userName && userMessage) {
@@ -125,8 +137,11 @@ export default function FormContact() {
         onSubmit={(e) => onSubmit(e)}
       >
         {popupMessage && renderPopup(popupMessage)}
-        <Description content={language?.descriptionContact} />
-        <Label id={"label-name"} content={"Nom Prénom"} />
+        <Description content={userLanguage?.ContactPage.descriptionContact} />
+        <Label
+          id={"label-name"}
+          content={userLanguage?.genericContent.placeholderName}
+        />
         <Input
           id={"input-name"}
           handleChange={(e) => getInputUser(e)}
@@ -136,7 +151,10 @@ export default function FormContact() {
           ? renderMessageError(messageError)
           : null}
 
-        <Label id={"label-mail"} content={"Mail"} />
+        <Label
+          id={"label-mail"}
+          content={userLanguage?.genericContent.titleMail}
+        />
         <Input
           id={"input-mail"}
           handleChange={(e) => getInputUser(e)}
@@ -146,7 +164,10 @@ export default function FormContact() {
           ? renderMessageError(messageError)
           : null}
 
-        <Label id={"label-message"} content={"Message"} />
+        <Label
+          id={"label-message"}
+          content={userLanguage?.genericContent.placeholderMessage}
+        />
         <TextArea id={"input-message"} handleChange={(e) => getInputUser(e)} />
         {messageError && messageError.id === "message"
           ? renderMessageError(messageError)

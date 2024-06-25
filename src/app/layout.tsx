@@ -24,7 +24,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
       </head>
-      <html lang="en">
+      <html lang="fr">
         <body className={inter.className}>
           <ProviderWrapper>{children}</ProviderWrapper>
         </body>

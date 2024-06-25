@@ -1,11 +1,21 @@
 import CardProject from "@/containers/card-project/CardProject";
-import { useAppSelector } from "@/hooks/Redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/Redux";
+import { changeProject } from "@/store/reducers/projectsSlice";
+import { useEffect } from "react";
 
 export default function PortfolioSection() {
-  const project = useAppSelector((state) => state.projects.projects);
+  const dispatch = useAppDispatch();
+  const currentLanguage = useAppSelector(
+    (state) => state.languages.currentLanguage
+  );
+  useEffect(() => {
+    dispatch(changeProject({ currentLanguage }));
+  }, [dispatch, currentLanguage]);
   const selectedProject = useAppSelector(
     (state) => state.projects.selectedProject
   );
+  const project = useAppSelector((state) => state.projects.projects);
+
 
   return (
     <section id="portfolio" className={sectionStyle}>

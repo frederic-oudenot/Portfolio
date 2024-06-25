@@ -1,5 +1,5 @@
 interface DescriptionProp {
-  content: string;
+  content: string | undefined;
   variant?: "white" | "black";
 }
 

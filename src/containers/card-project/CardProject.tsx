@@ -1,8 +1,8 @@
+import Image from "next/image";
 import MainButton from "@/components/buttons/MainButton";
 import Description from "@/components/typography/Description";
 import Title from "@/components/typography/Title";
-import Image from "next/image";
-import Skills from "../skills/Skills";
+import Skills from "@/containers/skills/Skills";
 import SubTitle from "@/components/typography/SubTitle";
 
 export default function CardProject({ project }: any) {
@@ -15,16 +15,17 @@ export default function CardProject({ project }: any) {
         variant={"white"}
       />
       <Description content={project?.description} />
-        {project.image.map((img: string, index: number) => (
-          <Image
-            key={index}
-            width={500}
-            height={300}
-            className={"rounded-lg"}
-            src={img}
-            alt={img}
-          />
-        ))}
+      {project.image.map((img: string, index: number) => (
+        <Image
+          key={index}
+          width={500}
+          height={300}
+          className={"rounded-lg"}
+          src={img}
+          alt={img}
+        />
+      ))}
+
       <div className="grid grid-cols-3 p-5 gap-4 max-md:grid-cols-2">
         {project.technologies?.map((techno: string, index: number) => (
           <Skills key={index} techno={techno} />

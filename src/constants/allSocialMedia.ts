@@ -8,7 +8,7 @@ const allSocialMedia = [
   },
   {
     id: "linkedin",
-    label: "Likedin",
+    label: "Linkedin",
     url: "https://www.linkedin.com/in/frederic-oudenot/",
     source:
       "https://img.icons8.com/?size=100&id=9pFq5Dj6Mz1d&format=png&color=000000",

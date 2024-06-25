@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { store } from "@/store/store";
 import { Provider } from "react-redux";
 
@@ -7,5 +7,10 @@ export default function ProviderWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  return <Provider store={store}>{children}</Provider>;
+
+  return (
+    <Provider store={store}>
+        {children}
+    </Provider>
+  );
 }

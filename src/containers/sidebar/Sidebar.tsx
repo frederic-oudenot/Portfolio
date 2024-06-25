@@ -1,8 +1,8 @@
 import allSocialMedia from "@/constants/allSocialMedia";
 import SideHeader from "../header/SideHeader";
-import allProjects from "@/constants/allProjects";
 import SideBarButton from "@/components/buttons/SideBarButton";
 import { familyWallpaper } from "@/constants/allWallpapers";
+import { useAppSelector } from "@/hooks/Redux";
 interface SidebarProp {
   id: string;
   windowId: string;
@@ -12,7 +12,10 @@ export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
   function renderSideBar(windowId: string) {
     switch (windowId) {
       case "portfolio":
-        return allProjects.map((project, index) => (
+        const allProjects = useAppSelector(
+          (state) => state.languages.initialLanguage.ProjectsPage
+        );
+        return allProjects.map((project: any, index: number) => (
           <SideBarButton
             key={index}
             isProject={true}
@@ -22,7 +25,10 @@ export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
           />
         ));
       case "settings":
-        return familyWallpaper.map((family, index) => (
+        const familyWallpaper = useAppSelector(
+          (state) => state.languages.initialLanguage.familyWallpaper
+        );
+        return familyWallpaper.map((family: any, index: number) => (
           <SideBarButton
             key={index}
             isProject={false}

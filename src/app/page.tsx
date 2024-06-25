@@ -9,6 +9,7 @@ import { useAppSelector } from "@/hooks/Redux";
 import Modal from "@/containers/modal/Modal";
 
 export default function Home() {
+
   // useState pour afficher la session mac
   const [display, SetDisplay] = useState<Boolean>(false);
   // Fournir le wallpaper initial lors du chargement de la web app
@@ -42,7 +43,7 @@ export default function Home() {
             selectedwallpaper
               ? {
                   backgroundImage: `url(${selectedwallpaper.src})`,
-                  transitionDelay: "250ms",
+                  transition: "all 1s ease-out",
                 }
               : { backgroundImage: `url(${wallpaper.src})` }
           }

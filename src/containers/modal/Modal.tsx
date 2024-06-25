@@ -1,8 +1,14 @@
 import { useState } from "react";
 import Description from "@/components/typography/Description";
 import Title from "@/components/typography/Title";
+import SubTitle from "@/components/typography/SubTitle";
+import MainButton from "@/components/buttons/MainButton";
+import { useAppSelector } from "@/hooks/Redux";
 
 export default function Modal() {
+  const userLanguage = useAppSelector(
+    (state) => state.languages.initialLanguage
+  );
   const [display, setDisplay] = useState<boolean>(true);
   function handleCloseModal() {
     setDisplay(!display);
@@ -13,23 +19,29 @@ export default function Modal() {
         <section
           onClick={handleCloseModal}
           onTouchEnd={handleCloseModal}
-          className="absolute inset-1/4 m-auto max-w-md h-96 rounded-lg bg-white p-10 z-50 max-md:p-4 max-md:w-2/3 "
+          className="absolute inset-1/4 m-auto max-w-md h-[500px] rounded-lg bg-white p-10 z-50 max-md:h-[600px]"
           id={"modal"}
         >
-          <button className="absolute text-black right-10 hover:scale-125">
-            X
-          </button>
-          <article className="flex flex-col space-y-12 gap-2 text-center max-md:gap-0 max-md:space-y-4">
+          <MainButton
+            id={"modal-close-button"}
+            label={userLanguage?.genericContent.closeButton}
+          />
+
+          <article className="flex flex-col space-y-12 gap-2 text-center">
             <Title
               id={"modal-title"}
-              content={"Bienvenue sur OS Experience"}
+              content={userLanguage?.modalContent.titleWelcome}
               variant={"black"}
             />
             <Description
-              content={
-                "Bienvenue sur mon portfolio, conçu pour offrir une expérience utilisateur unique et immersive, inspirée par le système d'exploitation macOS. Explorez mes compétences, découvrez mes projets et apprenez-en plus sur mon parcours professionnel à travers une interface élégante et intuitive."
-              }
+              content={userLanguage?.modalContent.welcome}
               variant={"black"}
+            />
+            <SubTitle
+              id={"created-by"}
+              content={userLanguage?.modalContent.developBy}
+              variant={"black"}
+              from={"modal"}
             />
           </article>
         </section>

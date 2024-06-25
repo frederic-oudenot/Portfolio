@@ -1,19 +1,23 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Avatar from "@/components/avatar/Avatar";
 import Slider from "@/components/slider/Slider";
 import Title from "@/components/typography/Title";
-import language from "@/translation/fr/fr";
+import SubTitle from "@/components/typography/SubTitle";
+import { useAppSelector } from "@/hooks/Redux";
 
 interface SessionProp {
   SetDisplay: Dispatch<SetStateAction<Boolean>>;
 }
 
 export default function Session({ SetDisplay }: SessionProp) {
-  const [position, setPosition] = useState({ x: 10 });
+  const userLanguage = useAppSelector(
+    (state) => state.languages.initialLanguage
+  );
+  const [positionX, setPositionX] = useState({ x: 10 });
   const [color, setColor] = useState<string>("red");
 
   function handleClickOpenSession() {
-    setPosition({
+    setPositionX({
       x: 70,
     });
     setColor("green");
@@ -24,7 +28,6 @@ export default function Session({ SetDisplay }: SessionProp) {
   }
   return (
     <section
-    
       className="absolute w-full h-screen place-content-center z-10"
       id="session"
     >
@@ -32,13 +35,19 @@ export default function Session({ SetDisplay }: SessionProp) {
         <Avatar />
         <Title
           id={"welcome-session"}
-          content={language.welcome}
+          content={userLanguage?.welcomePage.messageWelcome}
           variant={"white"}
         />
         <Slider
           handleClickOpenSession={handleClickOpenSession}
-          position={position.x}
+          positionX={positionX.x}
           color={color}
+        />
+        <SubTitle
+          id={"click-on"}
+          content={userLanguage?.welcomePage.click}
+          variant={"white"}
+          from={"session"}
         />
       </div>
     </section>

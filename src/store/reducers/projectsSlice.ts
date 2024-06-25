@@ -1,4 +1,4 @@
-import allProjects from "@/constants/allProjects";
+import getUserLanguage from "@/utils/getUserLanguage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ProjectState {
@@ -18,7 +18,7 @@ interface ProjectsState {
 }
 
 const initialState: any = {
-  projects: allProjects[0],
+  projects: [],
   selectedProject: null,
 };
 
@@ -26,9 +26,26 @@ const projectsSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
+    setProject(state, action: PayloadAction<any>) {
+      const language = action.payload;
+      const resultLanguage = getUserLanguage({ selectedLanguage: language });
+      state.projects = resultLanguage?.ProjectsPage[0];
+    },
     changeProject(state, action: PayloadAction<any>) {
-      const foundProject = allProjects.find(
-        (project) => project?.id === action.payload
+      let { projectId, currentLanguage } = action.payload;
+      if (!projectId) {
+        if (state.selectedProject && state.selectedProject?.id) {
+          projectId = state.selectedProject?.id;
+        } else {
+          projectId = state.project?.id;
+        }
+      }
+
+      const resultLanguage = getUserLanguage({
+        selectedLanguage: currentLanguage,
+      });
+      const foundProject = resultLanguage?.ProjectsPage.find(
+        (project) => project?.id === projectId
       );
       if (foundProject) {
         state.selectedProject = { ...foundProject };
@@ -39,5 +56,5 @@ const projectsSlice = createSlice({
   },
 });
 
-export const { changeProject } = projectsSlice.actions;
+export const { changeProject, setProject } = projectsSlice.actions;
 export default projectsSlice.reducer;

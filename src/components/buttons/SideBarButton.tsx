@@ -1,9 +1,8 @@
 import Image from "next/image";
 import SubTitle from "../typography/SubTitle";
-import { useAppDispatch } from "@/hooks/Redux";
-import { changeProject } from "@/store/reducers/projectsSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/Redux";
+import { changeProject, setProject } from "@/store/reducers/projectsSlice";
 import { changeFamilyWallpaper } from "@/store/reducers/wallpaperSlice";
-import { useRouter } from "next/navigation";
 
 interface SideBarButtonProp {
   id: string;
@@ -22,9 +21,15 @@ export default function SideBarButton({
 }: SideBarButtonProp) {
   const dispatch = useAppDispatch();
 
+  const currentLanguage = useAppSelector(
+    (state) => state.languages.currentLanguage
+  );
+
+  isProject ? dispatch(setProject(currentLanguage)) : null;
+
   function handleOpenProject(projectId: string) {
     isProject
-      ? dispatch(changeProject(projectId))
+      ? dispatch(changeProject({ projectId, currentLanguage }))
       : dispatch(changeFamilyWallpaper(projectId));
   }
 

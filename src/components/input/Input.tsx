@@ -1,3 +1,6 @@
+"use client";
+import { useAppSelector } from "@/hooks/Redux";
+
 interface InputProp {
   id: string;
   variant: string;
@@ -5,6 +8,9 @@ interface InputProp {
 }
 
 export default function Input({ id, variant, handleChange }: InputProp) {
+  const userLanguage = useAppSelector(
+    (state) => state.languages.initialLanguage
+  );
   return (
     <>
       {variant === "mail" ? (
@@ -14,7 +20,7 @@ export default function Input({ id, variant, handleChange }: InputProp) {
           required
           className={inputStyle}
           type={variant}
-          placeholder="email@gmail.com"
+          placeholder={userLanguage?.genericContent.placeholderEmail}
         />
       ) : id.includes("name") ? (
         <input
@@ -23,7 +29,7 @@ export default function Input({ id, variant, handleChange }: InputProp) {
           required
           className={inputStyle}
           type={variant}
-          placeholder="Nom prénom"
+          placeholder={userLanguage?.genericContent.placeholderName}
         />
       ) : (
         <input
@@ -32,7 +38,7 @@ export default function Input({ id, variant, handleChange }: InputProp) {
           required
           className={inputStyle}
           type={variant}
-          placeholder="Votre message ici !"
+          placeholder={userLanguage?.genericContent.placeholderName}
         />
       )}
     </>

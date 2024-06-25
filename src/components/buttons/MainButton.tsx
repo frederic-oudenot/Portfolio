@@ -2,7 +2,7 @@ import Link from "next/link";
 
 interface MainButtonProps {
   id: string;
-  label: string;
+  label: string | undefined;
   link?: string;
   handleOpenWindow?: () => void;
 }
@@ -12,6 +12,7 @@ export default function MainButton({
   link,
   handleOpenWindow,
 }: MainButtonProps) {
+  // Permettre d'ouvrier les fenetres en mode tablette ou mobile
   function onTouchEnd(url: string) {
     window.open(url, "_blank");
   }
@@ -28,7 +29,11 @@ export default function MainButton({
           {label}
         </Link>
       ) : (
-        <button id={id} onClick={handleOpenWindow} className="text-black">
+        <button
+          id={id}
+          onClick={handleOpenWindow}
+          className="text-black right-10 hover:scale-105"
+        >
           {label}
         </button>
       )}

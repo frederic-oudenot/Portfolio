@@ -16,14 +16,16 @@ interface WindowProp {
 }
 
 export default function Window({ id }: WindowProp) {
-  const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
-  const [position, setPosition] = useState<any>({ x: 0, y: 70 });
-  const dragStartPosition = useRef({ x: 0, y: 0 });
   const dispatch = useAppDispatch();
   const window = useAppSelector((state) =>
     state.windows.windows.find((window) => window.id === id)
   );
+  const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
+  const [position, setPosition] = useState<any>({ x: 0, y: 70 });
+  const dragStartPosition = useRef({ x: 0, y: 0 });
+  const [activeWindow, setActiveWindow] = useState<string>("");
 
+  // Montage de la page avec la taille des fenetres et selon l'id utilisé
   useEffect(() => {
     if (window) {
       const { isOpen, isReduce, isGrowth }: any = window;
@@ -42,12 +44,15 @@ export default function Window({ id }: WindowProp) {
       }
     }
   }, [window, id]);
+
+  // Fonction pour cliquer selon la fenetre utilisé
   function handleClick(id: string) {
     dispatch(selectWindow(id));
+    setActiveWindow(id);
   }
+  //Fonction pour débuter le mouvement de la fenetre
   const onDragStart = useCallback(
     (e: any) => {
-      console.log(e);
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
@@ -59,6 +64,7 @@ export default function Window({ id }: WindowProp) {
     [position]
   );
 
+  //Fonction pour continuer le mouvement de la fenetre
   const onDrag = useCallback(
     (e: any) => {
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
@@ -72,7 +78,7 @@ export default function Window({ id }: WindowProp) {
     },
     [position]
   );
-
+  //Fonction pour finir le mouvement de la fenetre
   const onDragEnd = useCallback(
     (e: any) => {
       const clientX = "touches" in e ? e.changedTouches[0].clientX : e.clientX;
