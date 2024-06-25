@@ -3,7 +3,7 @@ interface IconLanguage {
   src: string;
   width?: number;
   height?: number;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 
 export default function IconLanguage({
