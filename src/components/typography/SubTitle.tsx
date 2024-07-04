@@ -3,15 +3,22 @@ interface SubTitleProp {
   content: string | undefined;
   variant: "white" | "black" | "";
   from?: "modal" | "session" | "";
+  size?: string;
 }
 
-export default function SubTitle({ id, content, variant, from }: SubTitleProp) {
+export default function SubTitle({
+  id,
+  content,
+  variant,
+  from,
+  size,
+}: SubTitleProp) {
   return (
     <h3
       id={`subtitle-${id}`}
       className={
         from
-          ? `text-center text-md w-full text-${variant}`
+          ? `text-center text-md w-full text-${variant} text-xs`
           : `text-center text-md w-full text-${variant} max-md:hidden`
       }
     >

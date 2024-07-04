@@ -19,7 +19,7 @@ export default function Modal() {
         <section
           onClick={handleCloseModal}
           onTouchEnd={handleCloseModal}
-          className="absolute inset-1/4 m-auto max-w-md h-[500px] rounded-lg bg-white p-10 z-50 max-md:h-[600px]"
+          className="absolute inset-1/4 m-auto max-w-md h-[450px] rounded-lg bg-white p-6 z-50 max-md:h-11/12 max-md:overflow-y-auto"
           id={"modal"}
         >
           <MainButton
@@ -27,7 +27,7 @@ export default function Modal() {
             label={userLanguage?.genericContent.closeButton}
           />
 
-          <article className="flex flex-col space-y-12 gap-2 text-center">
+          <article className="flex flex-col space-y-12 gap-2 text-center max-md:space-y-2">
             <Title
               id={"modal-title"}
               content={userLanguage?.modalContent.titleWelcome}
