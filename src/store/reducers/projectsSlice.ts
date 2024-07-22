@@ -1,6 +1,7 @@
 import getUserLanguage from "@/utils/getUserLanguage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// Interfaces
 export interface ProjectState {
   id: string;
   name: string;
@@ -22,6 +23,7 @@ const initialState: any = {
   selectedProject: null,
 };
 
+// Define State according changing project into Redux
 const projectsSlice = createSlice({
   name: "projects",
   initialState,

@@ -6,10 +6,13 @@ import MainButton from "@/components/buttons/MainButton";
 import { useAppSelector } from "@/hooks/Redux";
 
 export default function Modal() {
+  // Returning language selected by user
   const userLanguage = useAppSelector(
     (state) => state.languages.initialLanguage
   );
+  // Init State Hook : display modal
   const [display, setDisplay] = useState<boolean>(true);
+  // Function changing state to close modal
   function handleCloseModal() {
     setDisplay(!display);
   }

@@ -3,11 +3,13 @@ import { openWindow } from "@/store/reducers/windowSlice";
 import MenuButton from "@/components/buttons/MenuButtons";
 
 export default function Footer() {
+  // Get language user selected
   const userLanguage = useAppSelector(
     (state) => state.languages.initialLanguage
   );
+  // Init Redux dispatch according select by user
   const dispatch = useAppDispatch();
-
+  // Changing status according button selected by user
   function handleOpenWindow(WindowId: string) {
     dispatch(openWindow(WindowId));
   }

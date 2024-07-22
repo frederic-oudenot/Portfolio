@@ -1,27 +1,20 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
 export async function POST(request: NextRequest) {
   const { mail, name, message } = await request.json();
 
+  // Define transfert message from web app to mail
   const transport = nodemailer.createTransport({
-    service: "gmail",
-    /* 
-        setting service as 'gmail' is same as providing these setings:
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true
-        If you want to use a different email provider other than gmail, you need to provide these manually.
-        Or you can go use these well known services and their settings at
-        https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
-    */
+    service: process.env.SERVICE,
     auth: {
       user: process.env.MY_EMAIL,
       pass: process.env.MY_PASSWORD,
     },
   });
 
+  // Configure structure mail before sending
   const mailOptions: Mail.Options = {
     from: mail,
     to: process.env.MY_EMAIL,
@@ -29,7 +22,7 @@ export async function POST(request: NextRequest) {
     subject: `Portfolio - Message from ${name} (${mail})`,
     text: message,
   };
-
+// Sending mail with all datas
   const sendMailPromise = () =>
     new Promise<string>((resolve, reject) => {
       transport.sendMail(mailOptions, function (err) {

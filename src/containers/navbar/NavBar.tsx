@@ -7,9 +7,11 @@ import { changeLanguage } from "@/store/reducers/languageSlice";
 import { openWindow, closeAllWindows } from "@/store/reducers/windowSlice";
 
 export default function NavBar() {
+  // Returning language selected by user
   const userLanguage = useAppSelector(
     (state) => state.languages.initialLanguage
   );
+  // Returning dispatch from Redux
   const dispatch = useAppDispatch();
   // Function pour ouvrir des fenetres et les prioriser
   function handleOpenWindow(WindowId: string) {

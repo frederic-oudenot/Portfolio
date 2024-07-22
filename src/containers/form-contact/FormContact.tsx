@@ -29,10 +29,12 @@ export default function FormContact() {
   const [messageError, setMessageError] = useState<MessageError>();
   const [popupMessage, setPopupMessage] = useState<any>("");
 
+  // Rendering error message if missing data
   useEffect(() => {
     renderMessageError(messageError);
   }, [messageError]);
 
+  // Rendering a short pop-up message, indication to sending a message
   useEffect(() => {
     setTimeout(() => {
       renderPopup(popupMessage);
@@ -40,34 +42,45 @@ export default function FormContact() {
     }, 2000);
   }, [popupMessage]);
 
+  // Function Submit a message
   async function onSubmit(e: any) {
     e.preventDefault();
+    // init variable data
     let formData;
+    // Checking if format mail is validated
     const isValidMail = checkMailUserInput(userMail);
 
+    // Checking if message is existed
     if (!userMessage || userMessage.message === "") {
       setMessageError({
         id: "message",
         text: userLanguage?.genericContent.errorMessage,
       });
     }
+    // Checking if username is existed
     if (!userName || userName.name === "") {
       setMessageError({
         id: "name",
         text: userLanguage?.genericContent.errorName,
       });
     }
+    // Checking if mail is existed
     if (!isValidMail) {
       setMessageError({
         id: "mail",
         text: userLanguage?.genericContent.errorMail,
       });
     }
-
+    // Checking if all are existed
     if (isValidMail && userName && userMessage) {
+      // Include all data
       formData = { ...userName, ...userMail, ...userMessage };
+      // Sending to our function to send a mail
       const resultMessage = await sendEmail(formData);
+      // Display a pop-up message
       setPopupMessage(resultMessage);
+
+      // Selected all inputs to reset all data
       const inputName = document.getElementById(
         "input-name"
       ) as HTMLInputElement;
@@ -78,32 +91,42 @@ export default function FormContact() {
         "input-message"
       ) as HTMLInputElement;
 
+      // Cleaning inputName
       if (inputName) {
         inputName.value = "";
         setUserName({ name: "" });
       }
+
+      // Cleaning inputMail
       if (inputMail) {
         inputMail.value = "";
         setUserMail({ mail: "" });
       }
+
+      // Cleaning inputMessage
       if (inputMessage) {
         inputMessage.value = "";
         setUserMessage({ message: "" });
       }
+
+      // Cleaning inputMessageError
       setMessageError({ id: "", text: "" });
     }
   }
 
+  // Rendering a pop-up message
   function renderPopup(popupMessage: string) {
     return <Popup variant={"yellowgreen"} content={popupMessage} />;
   }
 
+  // Rendering a message Error into form
   function renderMessageError(messageError: any) {
     return messageError ? (
       <Label id={"message-error"} color={"red"} content={messageError.text} />
     ) : null;
   }
 
+  // Function : Checking mail according regex
   function checkMailUserInput(userMail: any) {
     if (userMail && userMail.mail !== "") {
       return userMail?.mail.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/);
@@ -112,6 +135,7 @@ export default function FormContact() {
     }
   }
 
+  // Function getting all data from user if any change into inputs
   function getInputUser(e: any) {
     const inputUser = e.target.value;
     const idInputUser = e.target.id;

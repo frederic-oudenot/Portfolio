@@ -8,6 +8,7 @@ export default function ProviderWrapper({
   children: React.ReactNode;
 }) {
 
+  // Wrapper store redux on all project
   return (
     <Provider store={store}>
         {children}

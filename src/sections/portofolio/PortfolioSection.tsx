@@ -4,16 +4,22 @@ import { changeProject } from "@/store/reducers/projectsSlice";
 import { useEffect } from "react";
 
 export default function PortfolioSection() {
+  // 
   const dispatch = useAppDispatch();
+  // Returning current language 
   const currentLanguage = useAppSelector(
     (state) => state.languages.currentLanguage
   );
+  // Changing language according select user
   useEffect(() => {
     dispatch(changeProject({ currentLanguage }));
   }, [dispatch, currentLanguage]);
+
+  // Returning select project by user
   const selectedProject = useAppSelector(
     (state) => state.projects.selectedProject
   );
+  
   const project = useAppSelector((state) => state.projects.projects);
 
 

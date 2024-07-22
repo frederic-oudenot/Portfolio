@@ -14,8 +14,10 @@ interface NavigatorHeaderProp {
 }
 
 export default function SideHeader({ windowId, id }: NavigatorHeaderProp) {
+  // Returning dispatch from Redux
   const dispatch = useAppDispatch();
 
+  // Funciton click according each buttons (close, reduce or growth)
   function handleClick(buttonId: string) {
 
     switch (buttonId) {

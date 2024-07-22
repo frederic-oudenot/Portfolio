@@ -3,14 +3,18 @@ import CardWallpaper from "@/containers/card-wallpaper/CardWallpaper";
 import { changeWallpaper } from "@/store/reducers/wallpaperSlice";
 
 export default function SettingsSession() {
+  // Init dispatch from Redux
   const dispatch = useAppDispatch();
+  // Get all familyWallpaper from Redux
   const familyWallpaper = useAppSelector(
     (state) => state.wallpaper.familyWallpaper
   );
+  // Get all wallpaper according selected by user
   const selectedFamilyWallpaper = useAppSelector(
     (state) => state.wallpaper.selectedFamilyWallpaper
   );
 
+  // Function : Change wallpaper according selection by user
   function handleChangeWallpaper(wallapaperId: string) {
     dispatch(changeWallpaper(wallapaperId));
   }

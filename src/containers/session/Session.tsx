@@ -10,18 +10,25 @@ interface SessionProp {
 }
 
 export default function Session({ SetDisplay }: SessionProp) {
+  // Returning language selected by user
   const userLanguage = useAppSelector(
     (state) => state.languages.initialLanguage
   );
+  // Init State Hook : position session
   const [positionX, setPositionX] = useState({ x: 10 });
+  // Init State Hook : color button
   const [color, setColor] = useState<string>("red");
 
+  // Function : Button switch to open session
   function handleClickOpenSession() {
+    // Change state position
     setPositionX({
       x: 70,
     });
+    // Change color button
     setColor("green");
 
+    // Adding a timer to finish the action
     setTimeout(() => {
       SetDisplay(true);
     }, 1000);

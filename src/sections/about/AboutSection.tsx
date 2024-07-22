@@ -5,6 +5,7 @@ import Skills from "@/containers/skills/Skills";
 import { useAppSelector } from "@/hooks/Redux";
 
 export default function AboutSection() {
+  // Returning langauge selected by user
   const userLanguage = useAppSelector(
     (state) => state.languages.initialLanguage
   );
@@ -29,13 +30,6 @@ export default function AboutSection() {
           )
         )}
       </article>
-
-      {/* <article className={articleStyle}>
-        <Title id={"cursus"} content={allAboutMe?.title2} variant="white" />
-        {allAboutMe?.descriptionCursus.map((data, index) => (
-          <Description key={index} content={data} />
-        ))}
-      </article> */}
 
       <article className={articleStyle}>
         <Title

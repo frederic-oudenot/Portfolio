@@ -9,37 +9,47 @@ import {
   closeWindow,
 } from "@/utils/classNameWindow";
 import InnerWindow from "@/containers/inner-window/InnerWindow";
-import { openWindow, selectWindow } from "@/store/reducers/windowSlice";
+import { selectWindow } from "@/store/reducers/windowSlice";
 
 interface WindowProp {
   id: string;
 }
 
 export default function Window({ id }: WindowProp) {
+  // Init dispatch from redux
   const dispatch = useAppDispatch();
+  // Returning window selected by user
   const window = useAppSelector((state) =>
     state.windows.windows.find((window) => window.id === id)
   );
+  // Init State Hook : changing className according window
   const [changeClassname, setChangeClassname] = useState<string>(closeWindow);
+  // Init State Hook : start position window
   const [position, setPosition] = useState<any>({ x: 0, y: 70 });
+  // Init Ref Hook : Define position window according dragNDrop
   const dragStartPosition = useRef({ x: 0, y: 0 });
+  // Init State Hook : select active window
   const [activeWindow, setActiveWindow] = useState<string>("");
 
   // Montage de la page avec la taille des fenetres et selon l'id utilisé
   useEffect(() => {
     if (window) {
       const { isOpen, isReduce, isGrowth }: any = window;
-
+      // isOpen = Open window and change className
       if (isOpen) {
         setChangeClassname(normalWindow);
+      // isGrowth = Growth window and change className
         if (isGrowth) {
           setChangeClassname(fullWindow);
         } else if (isReduce) {
+          // isReduce = Reduce window and change className
           setChangeClassname(reduceWindow);
         } else {
+          // isReduce already done change it to normal window
           setChangeClassname(normalWindow);
         }
       } else {
+        // Close window
         setChangeClassname(closeWindow);
       }
     }

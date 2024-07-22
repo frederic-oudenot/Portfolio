@@ -9,12 +9,17 @@ interface SidebarProp {
   isReduce?: boolean;
 }
 export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
+  // Function : rendering sidebar according selection by user
   function renderSideBar(windowId: string) {
+
     switch (windowId) {
+      // rendering sidebar portfolio
       case "portfolio":
+        // Returning data from Redux
         const allProjects = useAppSelector(
           (state) => state.languages.initialLanguage.ProjectsPage
         );
+        // Rendering side bar according all datas
         return allProjects.map((project: any, index: number) => (
           <SideBarButton
             key={index}
@@ -24,10 +29,13 @@ export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
             source={project?.src}
           />
         ));
+      // rendering sidebar settings
       case "settings":
+        // Returning data from Redux
         const familyWallpaper = useAppSelector(
           (state) => state.languages.initialLanguage.familyWallpaper
         );
+        // Rendering side bar according all datas
         return familyWallpaper.map((family: any, index: number) => (
           <SideBarButton
             key={index}
@@ -37,7 +45,9 @@ export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
             source={family?.src}
           />
         ));
+      // rendering sidebar by default
       default:
+        // Rendering side bar according all datas social network
         return allSocialMedia.map((social, index) => (
           <SideBarButton
             key={index}
@@ -49,6 +59,7 @@ export default function Sidebar({ windowId, id, isReduce }: SidebarProp) {
         ));
     }
   }
+
   return (
     <aside className="sticky top-0 h-full w-48 bg-white-700[.06] max-md:w-16">
       <SideHeader id={`side-header-${windowId}`} windowId={windowId} />
